@@ -26,14 +26,29 @@
             <form action="#" class="form" id="form1">
                 <div class="input">
                     @Html.TextBoxFor(model => model.USER_NAME, new { @class = "form-control", placeholder = "姓名" })
+                    @Html.ValidationMessageFor(m => m.USER_NAME, "", new { @class = "text-danger", @style = "color:red" })
                 </div>
-
-                <input type="email" placeholder="Email" class="input" style="margin-top: 10px" /><br />
-                <input type="password" placeholder="密碼" class="input" style="margin-top: 10px" /><br />
-                <input type="text" placeholder="密碼" class="input" style="margin-top: 10px" /><br />
-                <input type="password" placeholder="密碼" class="input" style="margin-top: 10px" /><br />
-                <input type="password" placeholder="密碼" class="input" style="margin-top: 10px" /><br />
-                <button class="okButton" style="margin-top: 30px; width: 9vw; height: 2.4vw; ">註 冊</button>
+                <div class="input">
+                    @Html.TextBoxFor(model => model.EMAIL, new { @class = "form-control", placeholder = "Email", style = "margin-top: 10px" })
+                    @Html.ValidationMessageFor(m => m.EMAIL, "", new { @class = "text-danger", @style = "color:red" })
+                </div>
+                <div class="input">
+                    @Html.PasswordFor(model => model.PASSWORD, new { @class = "form-control", placeholder = "密碼", style = "margin-top: 10px" })
+                    @Html.ValidationMessageFor(m => m.PASSWORD, "", new { @class = "text-danger", @style = "color:red" })
+                </div>
+                <div class="input">
+                    @Html.TextBoxFor(model => model.TEL, new { @class = "form-control", placeholder = "電話", style = "margin-top: 10px" })
+                    @Html.ValidationMessageFor(m => m.TEL, "", new { @class = "text-danger", @style = "color:red" })
+                </div>
+                <div class="input">
+                    @Html.TextBoxFor(model => model.ADDR, new { @class = "form-control", placeholder = "地址", style = "margin-top: 10px" })
+                    @Html.ValidationMessageFor(m => m.ADDR, "", new { @class = "text-danger", @style = "color:red" })
+                </div>
+                <div class="input">
+                    @Html.TextBoxFor(model => model.SEX, new { @class = "form-control", placeholder = "性別", style = "margin-top: 10px" })
+                    @Html.ValidationMessageFor(m => m.SEX, "", new { @class = "text-danger", @style = "color:red" })
+                </div>
+                <button id="btnRegister" class="okButton" style="margin-top: 30px; width: 9vw; height: 2.4vw; ">註 冊</button>
             </form>
         </div>
 
@@ -58,6 +73,14 @@
 
     </body>
 }
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/windowAlert.js"></script>
+
 <script>
 
     signIn.onclick = function () {
@@ -87,6 +110,18 @@
             $('#signUp_button').css("display", "none")
             $('#signIn_form').css("display", "display")
             $('#signIn_button').css("display", "display")
+        });
+
+        // ******** "註冊"button click ********
+        $('#btnRegister').on('click', function (e) {
+            //修正會submit兩次的問題
+            e.preventDefault();
+            //表單驗證
+            if (!validator.validate()) {
+                return;
+            }
+            $form.attr('action', $('#loginUrl').val());
+            $form.submit();
         });
 
         // ******** "登入"button click ********

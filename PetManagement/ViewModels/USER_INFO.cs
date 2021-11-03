@@ -10,19 +10,14 @@ namespace PetManagement.ViewModels
     {
         public int ID { get; set; }
         [Required(ErrorMessage = "*姓名為必填")]
-        [Display(Name = "姓名")]
         public string USER_NAME { get; set; }
         [Required(ErrorMessage = "*密碼為必填")]
-        [Display(Name = "密碼")]
         public string PASSWORD { get; set; }
         [Required(ErrorMessage = "*信箱為必填")]
-        [Display(Name = "信箱")]
+        [EmailAddress]
         public string EMAIL { get; set; }
-        [Display(Name = "電話")]
         public string TEL { get; set; }
-        [Display(Name = "地址")]
         public string ADDR { get; set; }
-        [Display(Name = "性別")]
         public string SEX { get; set; }
         public System.DateTime CRT_DT { get; set; }
         public Nullable<System.DateTime> MDF_DT { get; set; }
