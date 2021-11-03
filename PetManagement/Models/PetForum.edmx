@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PetForumModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'PetForum.dbo.USER_INFO' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="USER_INFO">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="USER_NAME" />
+            <PropertyRef Name="PASSWORD" />
+            <PropertyRef Name="EMAIL" />
+            <PropertyRef Name="CRT_DT" />
+            <PropertyRef Name="IS_USE" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_NAME" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="PASSWORD" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="EMAIL" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="TEL" Type="nchar" MaxLength="10" />
+          <Property Name="ADDR" Type="nchar" MaxLength="100" />
+          <Property Name="SEX" Type="nchar" MaxLength="1" />
+          <Property Name="CRT_DT" Type="datetime" Nullable="false" />
+          <Property Name="MDF_DT" Type="datetime" />
+          <Property Name="IS_USE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PetForumModelStoreContainer">
+          <EntitySet Name="USER_INFO" EntityType="Self.USER_INFO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [USER_INFO].[ID] AS [ID], 
+    [USER_INFO].[USER_NAME] AS [USER_NAME], 
+    [USER_INFO].[PASSWORD] AS [PASSWORD], 
+    [USER_INFO].[EMAIL] AS [EMAIL], 
+    [USER_INFO].[TEL] AS [TEL], 
+    [USER_INFO].[ADDR] AS [ADDR], 
+    [USER_INFO].[SEX] AS [SEX], 
+    [USER_INFO].[CRT_DT] AS [CRT_DT], 
+    [USER_INFO].[MDF_DT] AS [MDF_DT], 
+    [USER_INFO].[IS_USE] AS [IS_USE]
+    FROM [dbo].[USER_INFO] AS [USER_INFO]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PetForumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="USER_INFO">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="USER_NAME" />
+            <PropertyRef Name="PASSWORD" />
+            <PropertyRef Name="EMAIL" />
+            <PropertyRef Name="CRT_DT" />
+            <PropertyRef Name="IS_USE" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_NAME" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TEL" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ADDR" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="SEX" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="CRT_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MDF_DT" Type="DateTime" Precision="3" />
+          <Property Name="IS_USE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PetForumEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="USER_INFO" EntityType="Self.USER_INFO" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PetForumModelStoreContainer" CdmEntityContainer="PetForumEntities">
+          <EntitySetMapping Name="USER_INFO">
+            <EntityTypeMapping TypeName="PetForumModel.USER_INFO">
+              <MappingFragment StoreEntitySet="USER_INFO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TEL" ColumnName="TEL" />
+                <ScalarProperty Name="ADDR" ColumnName="ADDR" />
+                <ScalarProperty Name="SEX" ColumnName="SEX" />
+                <ScalarProperty Name="CRT_DT" ColumnName="CRT_DT" />
+                <ScalarProperty Name="MDF_DT" ColumnName="MDF_DT" />
+                <ScalarProperty Name="IS_USE" ColumnName="IS_USE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

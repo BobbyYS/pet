@@ -1,0 +1,113 @@
+﻿.btn-member {
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    line-height: normal;
+    cursor: pointer;
+    -moz-user-select: text;
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 16px 36px 22px;
+    /*background-color: #fff;*/
+    color: #666;
+    border: 2px solid #666;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    transition: all .5s ease;
+}
+
+    .btn-member::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
+
+.btn-stripe {
+    overflow: hidden;
+    position: relative;
+}
+
+    .btn-stripe:after {
+        content: '';
+        display: block;
+        height: 7px;
+        width: 100%;
+        background-image: repeating-linear-gradient(45deg, #666, #666 1px, transparent 2px, transparent 5px);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-top: 1px solid #666;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-size: 7px 7px;
+    }
+
+.btn-click {
+    background-color: #CC543A;
+    color: #fff;
+    border-color: #CC543A;
+}
+
+.btn-notclick {
+    background-color: #fff;
+}
+
+.btn-large {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.sub-title {
+    padding-bottom: 12px;
+    position: relative;
+    color: #343434;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 2em;
+    text-align: left;
+}
+
+    .sub-title:after {
+        content: '';
+        background: #343434;
+        display: block;
+        width: 35px;
+        height: 4px;
+        position: absolute;
+        bottom: 8px;
+        left: 0;
+    }
+
+/* 漂浮位置 */
+.float_right {
+    float: right;
+    /*margin-right: 20px;*/
+    margin-top:39px;
+}
+
+.SearchUl {
+    padding: 0;
+    list-style: none;
+}
+
+.SearchLi {
+    width: 33%;
+    display: inline-block;
+    padding: 10px;
+}
+
+.SearchLiWave {
+    width: 1%;
+    display: inline-block;
+    padding: 0;
+}
+
+.txtRight{
+    text-align:right;
+}
