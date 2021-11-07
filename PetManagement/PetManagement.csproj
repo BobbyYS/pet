@@ -133,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data.cs" />
     <Compile Include="Models\PetForum.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -152,9 +153,11 @@
       <DependentUpon>PetForum.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\MESSAGE.cs" />
     <Compile Include="ViewModels\USER_INFO.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Message.css" />
     <Content Include="Content\PublicStyle.css" />
     <Content Include="Content\Stock.css" />
     <Content Include="Images\Header\icon\pet-house_color.png" />
@@ -216,6 +219,7 @@
     <Content Include="Scripts\fancybox\src\js\wheel.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquerysession.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -273,6 +277,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\PET\AddImg.js" />
     <Content Include="Scripts\windowAlert.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -287,9 +292,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Home\_Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
