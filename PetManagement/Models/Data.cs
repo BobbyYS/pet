@@ -96,30 +96,36 @@ namespace PetManagement.Models
         public List<Message> MessageData()
         {
             List<Message> dataList = new List<Message>();
-            Message data = new Message();
             try
             {
                 //string findSql = String.Format("SELECT USER_NAME,MESSAGE FROM FORUM {0},{1}", "", "");
-                string findSql = String.Format("SELECT USER_NAME,MESSAGE FROM FORUM");
+                string findSql = String.Format("SELECT USER_ID,USER_NAME,MESSAGE,IMG,CRT_DT FROM FORUM"+
+                    " WHERE IS_PUBLIC=1 AND UP_ID='0'"+
+                    " ORDER BY CRT_DT DESC");
                 DataTable messageTable =GetDataTable(findSql);
-                foreach (DataRow dr in messageTable.Rows)
+                if (messageTable != null)
                 {
-                    data.USER_NAME= dr["USER_NAME"].ToString().Trim();
-                    data.MESSAGE = dr["MESSAGE"].ToString().Trim();
-                    data.IMG = "";//dr["USER_NAME"].ToString();
-                    data.VIDEO = "";//dr["USER_NAME"].ToString();
-                    data.UP_ID = 1; //dr["USER_NAME"].ToString();
-                    data.IS_PUBLIC = true;//dr["USER_NAME"].ToString();
-                    data.CRT_DT = DateTime.Now;//dr["USER_NAME"].ToString();
-                    //data.MDF_DT = null;//dr["USER_NAME"].ToString();
-                    dataList.Add(data);
+                    foreach (DataRow dr in messageTable.Rows)
+                    {
+                        Message data = new Message();
+                        data.USER_ID = dr["USER_ID"].ToString().Trim();
+                        data.USER_NAME = dr["USER_NAME"].ToString().Trim();
+                        data.MESSAGE = dr["MESSAGE"].ToString().Trim();
+                        data.IMG = dr["IMG"].ToString().Trim();
+                        data.VIDEO = "";//dr["USER_NAME"].ToString();
+                        data.UP_ID = 0; //dr["USER_NAME"].ToString();
+                        //data.IS_PUBLIC = true;//dr["USER_NAME"].ToString();
+                        data.CRT_DT = DateTime.Parse(dr["CRT_DT"].ToString());
+                        //data.MDF_DT = null;//dr["USER_NAME"].ToString();
+                        dataList.Add(data);
+                    }
                 }
-                return dataList;
             }
             catch (SqlException e)
             {
-                return dataList;
             }
+            return dataList;
+
         }
 
     }
