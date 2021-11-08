@@ -20,6 +20,14 @@ namespace PetManagement.ViewModels
             [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy HH:mm:ss}")]
             public DateTime CRT_DT { get; set; }
             public DateTime MDF_DT { get; set; }
+            public List<Command> COMMAND_LIST { get; set; }
+        }
+
+        public class Command {
+            public string IMG { get; set; }
+            public string USER_NAME { get; set; }
+            public string MESSAGE { get; set; }
+
         }
     }
 }

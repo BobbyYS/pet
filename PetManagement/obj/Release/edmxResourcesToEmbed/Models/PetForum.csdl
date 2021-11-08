@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PetForumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="USER_INFO">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="USER_NAME" />
+      <PropertyRef Name="PASSWORD" />
+      <PropertyRef Name="EMAIL" />
+      <PropertyRef Name="CRT_DT" />
+      <PropertyRef Name="IS_USE" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_NAME" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TEL" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ADDR" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="SEX" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="CRT_DT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MDF_DT" Type="DateTime" Precision="3" />
+    <Property Name="IS_USE" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="PetForumEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="USER_INFO" EntityType="Self.USER_INFO" />
+  </EntityContainer>
+</Schema>

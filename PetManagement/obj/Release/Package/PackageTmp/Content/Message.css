@@ -1,0 +1,493 @@
+﻿/* = Grid Starts here */
+/*calculate the width of Columns */
+.col-1 {
+    width: calc(8.33333%*1);
+}
+
+.col-2 {
+    width: calc(8.33333%*2);
+}
+
+.col-3 {
+    width: calc(8.33333%*3);
+}
+
+.col-4 {
+    width: calc(8.33333%*4);
+}
+
+.col-5 {
+    width: calc(8.33333%*5);
+}
+
+.col-6 {
+    width: calc(8.33333%*6);
+}
+
+.col-7 {
+    width: calc(8.33333%*7);
+}
+
+.col-8 {
+    width: calc(8.33333%*8);
+}
+
+.col-9 {
+    width: calc(8.33333%*9);
+}
+
+.col-10 {
+    width: calc(8.33333%*10);
+}
+
+.col-11 {
+    width: calc(8.33333%*11);
+}
+
+.col-12 {
+    width: calc(8.33333%*12);
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+    .row [class*="col-"] {
+        box-sizing: border-box;
+        margin: 0 0;
+        padding: 1em;
+    }
+
+/* Grid Ends */
+html {
+    background: white;
+    font-size: 0.8em;
+}
+
+body {
+    font-family: "Poppins", Helvetica, sans-serif;
+    display: block;
+    background: white;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+h4 {
+    font-size: 1em;
+    font-weight: 500;
+}
+
+h5 {
+    font-size: 0.8em;
+    font-weight: 500;
+}
+
+p {
+    font-size: 1em;
+    margin-bottom: 1.3em;
+    color: #666666;
+}
+
+a {
+    color: #6c6d6f;
+    text-decoration: none;
+    font-family: "Poppins", Helvetica, sans-serif;
+    font-weight: 500;
+}
+
+
+
+
+.active {
+    background-color: #656c7e;
+    color: white;
+    margin-top: -16px;
+}
+
+    .active i {
+        color: white;
+        padding-bottom: 15px;
+    }
+
+.dash {
+    text-transform: uppercase;
+    font-size: .8em;
+    font-weight: bold;
+    display: inline;
+}
+
+    .dash i {
+        position: relative;
+        float: left;
+    }
+
+    .dash .status {
+        overflow: hidden;
+        padding-left: 10px;
+        padding-top: 5px;
+    }
+
+    .dash span {
+        color: #b9b9b9;
+        text-transform: none;
+        display: block;
+        padding-top: 5px;
+    }
+
+.dash-number {
+    font-size: 4.5em;
+    font-family: "Poppins", Helvetica, sans-serif;
+    font-weight: 300;
+    color: #2a2d33;
+}
+
+.fa {
+    padding: 5px;
+    position: relative;
+    top: 5px;
+}
+
+.main-icon {
+    color: #63666e;
+    font-size: 1.5em;
+    padding-right: 10px;
+}
+
+.wrap {
+    padding-left: 1em;
+}
+
+.box {
+    background: #ffffff;
+    border: 1px solid #e4e4e4;
+    border-radius: 5px;
+    margin-right: 2em;
+    margin-left: 1em;
+    margin-top: 1em;
+}
+
+    .box i {
+        font-size: 1.5em;
+        transform: rotate(90deg);
+    }
+
+    .box p, .box h4 {
+        padding: 1em;
+    }
+
+    .box h4 {
+        display: inline-block;
+    }
+
+        .box h4 span {
+            color: #b9b9b9;
+        }
+
+    .box h5 {
+        padding-top: 10px;
+    }
+
+        .box h5 span {
+            color: #6c6d6f;
+            display: block;
+            line-height: 1.6;
+            overflow: hidden;
+            padding-right: 20px;
+        }
+
+    .box .avatar, .box .sm-avatar {
+        padding: 10px;
+        display: inline;
+        position: relative;
+        border-radius: 50%;
+        float: left;
+    }
+
+    .box .avatar {
+        width: 60px;
+    }
+
+    .box .sm-avatar {
+        width: 30px;
+    }
+
+    .box img {
+        width: 100%;
+    }
+
+    .box .text-box {
+        display: inline-block;
+        width: 80%;
+        padding-top: 0.5em;
+    }
+
+.msg-board {
+    color: #6c6d6f;
+    font-weight: 500;
+    margin-right: 15px;
+}
+
+    .msg-board button {
+        float: right;
+        margin-top: -10px;
+    }
+
+        .msg-board button:last-of-type {
+            margin-right: 10px;
+        }
+
+        .msg-board button i {
+            font-size: 2.4em;
+            padding: 0;
+            top: 0;
+            float: left;
+            color: #6c6d6f;
+        }
+
+/* = Borders */
+.border {
+    border: solid 1px #e4e4e4;
+}
+
+.border-left {
+    border-left: solid 1px #e4e4e4;
+}
+
+.border-right {
+    border-right: solid 1px #e4e4e4;
+}
+
+.border-top {
+    border-top: solid 1px #e4e4e4;
+}
+
+.border-bottom {
+    border-bottom: solid 1px #e4e4e4;
+}
+
+/* = Grid ends here */
+/* = UI Components */
+/*Forms */
+.btn {
+    padding: 10px;
+    border: 1px solid #b9b9b9;
+    border-radius: 3px;
+    background-color: #ffffff;
+    font-weight: 500;
+    font-family: "Poppins", Helvetica, sans-serif;
+    font-size: 0.9em;
+    color: #656c7e;
+}
+
+    .btn:active, .btn:hover {
+        color: #2791c6;
+        border: 1px solid #2791c6;
+        background-color: #c5e4f4;
+        transition: all ease-in 0.2s;
+    }
+
+.post {
+    padding: 10px;
+    border: 1px solid #b9b9b9;
+    border-radius: 3px;
+    background-color: #ffffff;
+    font-weight: 500;
+    font-family: "Poppins", Helvetica, sans-serif;
+    font-size: 0.9em;
+    color: #2791c6;
+    border: 1px solid #2791c6;
+    margin-left: 4.2em;
+    margin-bottom: 1.5em;
+}
+
+    .post:active, .post:hover {
+        color: #2791c6;
+        border: 1px solid #2791c6;
+        background-color: #c5e4f4;
+        transition: all ease-in 0.2s;
+    }
+
+textarea {
+    font-family: "Poppins", Helvetica, sans-serif;
+    font-size: 0.9rem;
+    display: inline-block;
+    width: 100%;
+    border: solid 1px #b9b9b9;
+    outline: none;
+    box-sizing: border-box;
+    padding: 0.6rem;
+    box-shadow: none;
+    border-radius: 4px;
+}
+
+    textarea:focus {
+        border: solid 1px #aaa;
+    }
+
+    textarea:hover, textarea:focus {
+        border: 1px solid #c5e4f4;
+    }
+
+input {
+    font-family: "Poppins", Helvetica, sans-serif;
+    font-size: 0.9rem;
+    display: inline-block;
+    width: 100%;
+    border: solid 1px #b9b9b9;
+    outline: none;
+    box-sizing: border-box;
+    padding: 0.6rem;
+    box-shadow: none;
+    border-radius: 4px;
+}
+
+    input:focus {
+        border: solid 1px #aaa;
+    }
+
+.input-wrap, fieldset {
+    margin-bottom: 1em;
+    padding: 10px 13px;
+}
+
+inputCommand {
+}
+
+
+fieldset {
+    border: solid 1px #e4e4e4;
+    padding: 0.6rem;
+}
+
+    fieldset legend {
+        font-size: 0.8rem;
+        color: #656c7e;
+    }
+
+textarea:hover, input[type="text"]:hover {
+    border: 1px solid #2791c6;
+}
+
+.sidebar {
+    background-color: #ededed;
+}
+
+    .sidebar .arrow-right {
+        background-color: lightgray;
+        position: relative;
+        padding: 10px;
+        top: -12px;
+        left: -10px;
+    }
+
+    .sidebar h3 {
+        padding-top: 20px;
+        font-family: "Poppins", Helvetica, sans-serif;
+        letter-spacing: 0.5px;
+    }
+
+    .sidebar > i {
+        font-size: .7em;
+    }
+
+    .sidebar > article {
+        border-bottom: solid 1px #e4e4e4;
+        padding: 1em;
+    }
+
+        .sidebar > article ul {
+            list-style: none;
+            padding: 0;
+        }
+
+    .sidebar .avatar > li {
+        display: inline;
+    }
+
+    .sidebar a {
+        font-size: .9em;
+    }
+
+        .sidebar a:hover img {
+            opacity: 0.5;
+        }
+
+    .sidebar i {
+        font-size: 2em;
+        color: #656c7e;
+        padding-right: 20px;
+    }
+
+.grid-preview {
+    padding: 0;
+    background: #f7f7f7;
+    border-bottom: solid 1px #e4e4e4;
+}
+
+@media only screen and (max-width: 480px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .title, .title-center, .top-sidebar, .menu, .sidebar {
+        width: 100%;
+    }
+
+    .numbers {
+        display: none;
+    }
+
+    .top-sidebar {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 1360px) {
+    .top-sidebar .avatar {
+        display: none;
+    }
+}
+
+.okButton {
+    border: 0;
+    background-color: #428bca;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+    .okButton:hover {
+        color: #003C9D;
+        background-color: #fff;
+        border: 2px #428bca solid;
+    }
+
+/* 上傳圖片區 start*/
+.upload_zone {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #D3D3D3;
+}
+
+.upload_zone_enter {
+    border: 10px dashed black;
+    background-clip: content-box;
+}
+
+.obj {
+    width: 200px;
+    height: 200px;
+}
+
+.display_none {
+    display: none;
+}
+/* 上傳圖片區 end*/
+

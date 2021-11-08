@@ -188,6 +188,7 @@
     <Content Include="Images\Header\icon\calculator.png" />
     <Content Include="Images\Header\icon\map.png" />
     <Content Include="Images\Header\icon\qa.png" />
+    <Content Include="Images\send.png" />
     <Content Include="Images\triangle.png" />
     <Content Include="Models\PetForum.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -296,6 +297,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="file\" />
     <Folder Include="Scripts\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>

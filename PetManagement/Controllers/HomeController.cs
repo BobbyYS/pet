@@ -23,7 +23,7 @@ namespace PetManagement.Controllers
             return View(messageList);
         }
 
-        public ActionResult _Message(string id, string name, DateTime time, string message, string img)
+        public ActionResult _Message(string id, string name, DateTime time, string message, string img, List<Command> commandList)
         {
             Message messageInf = new Message();
             messageInf.USER_ID = id;
@@ -31,7 +31,7 @@ namespace PetManagement.Controllers
             messageInf.CRT_DT = time;
             messageInf.MESSAGE = message;
             messageInf.IMG = img;
-
+            messageInf.COMMAND_LIST = commandList;
             return PartialView(messageInf);
         }
 
@@ -79,24 +79,22 @@ namespace PetManagement.Controllers
                 if (Request.Files["file"].ContentLength > 0)
                 {
                     string extension = Path.GetExtension(file.FileName);
-                    //string fileSavedPath = WebConfigurationManager.AppSettings["UploadPath"];
-                    string relativePath = WebConfigurationManager.AppSettings["filePath"].ToString();//取得在專案中的路徑
-                    string fileSavedPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath); //取得完整路徑
-
+                    string fileSavedPath = WebConfigurationManager.AppSettings["filePath"].ToString();//取得在專案中的路徑
+                    
                     //判斷是否為圖檔
                     if (extension == ".jpg" || extension == ".png" || extension == ".tif" || extension == ".jpeg")
                     {
                         //更改檔名為當天日期時間
                         string newFileName = string.Concat(
-                        DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss"),
+                        DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"),
                         Path.GetExtension(file.FileName).ToLower());
-                        string fullFilePath = Path.Combine(Server.MapPath(fileSavedPath), newFileName);
+                        string fullFilePath = Path.Combine(Server.MapPath(fileSavedPath).Replace("Home\\",""), newFileName);
 
                         // 存放檔案到伺服器上
                         Request.Files["file"].SaveAs(fullFilePath);
 
                         //寫入要回傳的路徑
-                        rtnFilePath = fullFilePath;
+                        rtnFilePath = "/"+fileSavedPath+ newFileName;
                         Response.Write("<script language=javascript>alert(' 檔案上傳成功 ');</" +"script>");
                     }
                     else

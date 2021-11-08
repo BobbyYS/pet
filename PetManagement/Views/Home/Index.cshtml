@@ -6,23 +6,26 @@
 <link href="~/Content/Message.css" rel="stylesheet" />
 
 
-<h2>論壇中心</h2>
+<h2><b>論壇中心</b></h2>
 
-<div class="box">
-    <form enctype="multipart/form-data">
-        <div class="input-wrap" style="text-align: right">
-            <input type="text" class="inputCommand" name="comment" id="comment" placeholder="Add your comment" required="required" />
-            <input type="file" id="fileUploader"  />
-            <input type="button" id="Send" value="送出" onclick="SaveCommand()" style="width: 70px; height: 37px; margin-top:10px;" class="okButton" />
-        </div>
-    </form>
-</div>
+@if (Session["userId"] !=null && Session["userId"].ToString() != "")
+{
+    <div class="box">
+        <form enctype="multipart/form-data">
+            <div class="input-wrap" style="text-align: right">
+                <input type="text" class="inputCommand" name="comment" id="comment" placeholder="Add your comment" required="required" />
+                <input type="file" id="fileUploader" style="border:none;"/>
+                <input type="button" id="Send" value="送出" onclick="SaveCommand()" style="width: 70px; height: 37px; margin-top:10px;" class="okButton" />
+            </div>
+        </form>
+    </div>
+}
 
 @foreach (var item in Model)
 {
     <div class="box">
         @{
-            Html.RenderAction("_Message", new { id = item.USER_ID, name = item.USER_NAME, time = item.CRT_DT, message = item.MESSAGE, img = item.IMG });
+            Html.RenderAction("_Message", new { id = item.USER_ID, name = item.USER_NAME, time = item.CRT_DT, message = item.MESSAGE, img = item.IMG, commandList=item.COMMAND_LIST });
         }
     </div>
 }

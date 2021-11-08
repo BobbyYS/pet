@@ -1,0 +1,33 @@
+﻿@model PetManagement.ViewModels.MESSAGE.Message
+@{
+}
+
+<link href="~/Content/Message.css" rel="stylesheet" />
+
+<img class="avatar" src="~/file/public/user.jpg">
+<h4><b>@Model.USER_NAME</b></br><span style="font-size: 0.8em">@Model.CRT_DT</span></h4>
+<p>
+    @Model.MESSAGE
+</p>
+@if (@Model.IMG != "")
+{
+    <img src=@Model.IMG />
+}
+<p>
+    @*@Html.ActionLink("View 3 more comments", "FancyBox", "Home", null, new { @class = "fancybox fancybox.iframe" })*@
+    <a style="font-size: 0.7em; color: #428bca" href="#">View 3 more comments</a>
+</p>
+@*<img class="sm-avatar" src="http://lorempixel.com/64/64/people">
+    <h5>
+        Alec Nilsson
+        <span>
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        </span>
+    </h5>*@
+@*<form action="#">
+        <div class="input-wrap">
+            <input type="text" name="name" id="name" placeholder="Add your comment" />
+        </div>
+    </form>*@
+
+

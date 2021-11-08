@@ -1,0 +1,58 @@
+﻿@model IEnumerable<PetManagement.ViewModels.MESSAGE.Message>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Message.css" rel="stylesheet" />
+
+
+<h2>論壇中心</h2>
+
+<div class="box">
+    <form enctype="multipart/form-data">
+        <div class="input-wrap" style="text-align: right">
+            <input type="text" class="inputCommand" name="comment" id="comment" placeholder="Add your comment" required="required" />
+            <input type="file" id="fileUploader"  />
+            <input type="button" id="Send" value="送出" onclick="SaveCommand()" style="width: 70px; height: 37px; margin-top:10px;" class="okButton" />
+        </div>
+    </form>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="box">
+        @{
+            Html.RenderAction("_Message", new { id = item.USER_ID, name = item.USER_NAME, time = item.CRT_DT, message = item.MESSAGE, img = item.IMG });
+        }
+    </div>
+}
+
+<script type="text/javascript">
+    var id = "@(Session["userId"])";
+    var name = "@(Session["userName"])";
+
+    function SaveCommand() {
+        if ($("#comment").val().trim() === "") {
+            alert("評論不可空白");
+        }
+        else {
+            var formData = new FormData();
+            formData.append("file", document.getElementById("fileUploader").files[0]);
+            formData.append('id', id)
+            formData.append('user', name)
+            formData.append('comment', $("#comment").val())
+
+            $.ajax({
+                url: "@(Url.Action("AddMessage", "Home"))",
+                type: "POST",
+                data: formData,//,id: id, user: name, comment: $("#comment").val() },
+                contentType: false, //required
+                processData: false, // required
+                success: function (data) {
+                    //alert("留言成功");
+                    location.reload();
+                }
+            });
+        }
+    }
+</script>

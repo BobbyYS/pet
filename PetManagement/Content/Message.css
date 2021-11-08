@@ -211,7 +211,7 @@ a {
     }
 
     .box .sm-avatar {
-        width: 30px;
+        width: 40px;
     }
 
     .box img {
@@ -354,7 +354,13 @@ input {
 }
 
 inputCommand {
+    border: none;
 }
+
+    inputCommand:focus {
+        border: none;
+    }
+
 
 
 fieldset {
@@ -370,56 +376,6 @@ fieldset {
 textarea:hover, input[type="text"]:hover {
     border: 1px solid #2791c6;
 }
-
-.sidebar {
-    background-color: #ededed;
-}
-
-    .sidebar .arrow-right {
-        background-color: lightgray;
-        position: relative;
-        padding: 10px;
-        top: -12px;
-        left: -10px;
-    }
-
-    .sidebar h3 {
-        padding-top: 20px;
-        font-family: "Poppins", Helvetica, sans-serif;
-        letter-spacing: 0.5px;
-    }
-
-    .sidebar > i {
-        font-size: .7em;
-    }
-
-    .sidebar > article {
-        border-bottom: solid 1px #e4e4e4;
-        padding: 1em;
-    }
-
-        .sidebar > article ul {
-            list-style: none;
-            padding: 0;
-        }
-
-    .sidebar .avatar > li {
-        display: inline;
-    }
-
-    .sidebar a {
-        font-size: .9em;
-    }
-
-        .sidebar a:hover img {
-            opacity: 0.5;
-        }
-
-    .sidebar i {
-        font-size: 2em;
-        color: #656c7e;
-        padding-right: 20px;
-    }
 
 .grid-preview {
     padding: 0;

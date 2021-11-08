@@ -1,0 +1,222 @@
+﻿body {
+}
+
+/**************************************************************/
+/*************************   表格類   *************************/
+/**************************************************************/
+
+table {
+/*    border: 1px solid #666; */    
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 7px;
+}
+
+/*表格基數行*/
+tr:nth-child(even) {
+    background: #efefef;
+}
+
+/*表格偶數行*/
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/*表頭*/
+th {
+    background-color: #428bca;
+    color: #ffffff;
+    text-align: center;
+    border: 1px solid #cccccc;
+}
+
+/*第一欄第一列：左上*/
+th:first-child {
+    border-top-left-radius: 10px;
+}
+/*最後欄第一列：右上*/
+th:last-child {
+    border-top-right-radius: 10px;
+}
+/*第一欄最後列：左下*/
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+/*最後欄第一列：右下*/
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+/*表格框線*/
+tr td{
+    border: 1px solid #cccccc;
+    color: #555555;
+    text-align: center;
+}
+
+td {
+    border: 1px solid #cccccc;
+    color: #555555;
+    text-align: center;
+    line-height: 28px;
+}
+
+/*滑鼠移過，會有不一樣的底色*/
+tr:hover {
+    background-color: #E6FBFF;
+}
+
+/*表格外邊框*/
+.sexyborder {
+    border: 1px solid #0066cc;
+    padding: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+
+/**************************************************************/
+/*************************   文字類   *************************/
+/**************************************************************/
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    color: #428bca;
+    letter-spacing: 5px;
+    text-shadow: -1px -1px 0px #ffffff, 3px 3px 0px #ffffff, 6px 6px 0px #cccccc;
+}
+
+h2 {
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    color: #428bca;
+    letter-spacing: 5px;
+}
+
+p {
+    color: #428bca;
+    letter-spacing: 2px;
+}
+
+.inputText {
+    border: 0;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/**************************************************************/
+/*************************   元件類   *************************/
+/**************************************************************/
+
+/*****  按鈕  *****/
+.okButton {
+    border: 0;
+    background-color: #428bca;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .okButton:hover {
+        color: #003C9D;
+        background-color: #fff;
+        border: 2px #428bca solid;
+    }
+
+
+.rainbow-button {
+    width: calc(15vw + 6px);
+    height: calc(4vw + 6px);
+    background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 2vw;
+    font-weight: bold;
+    border: 0;
+    color: #428bca;
+    float: left;
+    margin-bottom: -65px; /*置中元素高度的一半*/
+}
+
+    .rainbow-button:after {
+        content: attr(alt);
+        width: 15vw;
+        height: 4vw;
+        background-color: #edf7fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50px;
+    }
+
+    .rainbow-button:hover {
+        animation: slidebg 2s linear infinite;
+    }
+
+@keyframes slidebg {
+    to {
+        background-position: 20vw;
+    }
+}
+
+
+/*****  body  *****/
+.loginBody {
+    background-image: url('Image/147.jpg');
+}
+
+
+/*****  form  *****/
+.textForm {
+    width: 300px;
+    height: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    /*    border: 5px solid #fff;*/
+    -webkit-box-shadow: 6px 6px 10px #4F4F4F;
+    -moz-box-shadow: 6px 6px 10px #4F4F4F;
+    box-shadow: 12px 12px 20px #4F4F4F;
+    backdrop-filter: blur(1px);
+    background-color: #F0F0F0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    float: left; /*讓div可以並排*/
+    padding: 10px;
+    position: absolute;
+    top: 25%;
+    left: 23%;
+}
+
+.buttonForm {
+    width: 300px;
+    height: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #F0F0F0;
+    -webkit-box-shadow: 6px 6px 10px #4F4F4F;
+    -moz-box-shadow: 6px 6px 10px #4F4F4F;
+    box-shadow: 12px 12px 20px #4F4F4F;
+    backdrop-filter: blur(1px);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    float: left; /*讓div可以並排*/
+    padding: 10px;
+    vertical-align: middle;
+    position: absolute;
+    top: 25%;
+    left: 53%;
+}
+
