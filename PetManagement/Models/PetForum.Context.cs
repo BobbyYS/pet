@@ -26,5 +26,6 @@ namespace PetManagement.Models
         }
     
         public virtual DbSet<USER_INFO> USER_INFO { get; set; }
+        public virtual DbSet<FORUM> FORUM { get; set; }
     }
 }

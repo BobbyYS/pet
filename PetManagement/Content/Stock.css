@@ -6,7 +6,7 @@
 /**************************************************************/
 
 table {
-/*    border: 1px solid #666; */    
+    /*    border: 1px solid #666; */
     border-collapse: separate;
     border-spacing: 0;
     margin-top: 7px;
@@ -30,14 +30,14 @@ th {
     border: 1px solid #cccccc;
 }
 
-/*第一欄第一列：左上*/
-th:first-child {
-    border-top-left-radius: 10px;
-}
-/*最後欄第一列：右上*/
-th:last-child {
-    border-top-right-radius: 10px;
-}
+    /*第一欄第一列：左上*/
+    th:first-child {
+        border-top-left-radius: 10px;
+    }
+    /*最後欄第一列：右上*/
+    th:last-child {
+        border-top-right-radius: 10px;
+    }
 /*第一欄最後列：左下*/
 table tr:last-child td:first-child {
     border-bottom-left-radius: 10px;
@@ -48,7 +48,7 @@ table tr:last-child td:last-child {
 }
 
 /*表格框線*/
-tr td{
+tr td {
     border: 1px solid #cccccc;
     color: #555555;
     text-align: center;
@@ -87,7 +87,7 @@ h1 {
     width: 100%;
     color: #428bca;
     letter-spacing: 5px;
-    text-shadow: -1px -1px 0px #ffffff, 3px 3px 0px #ffffff, 6px 6px 0px #cccccc;
+    /*text-shadow: -1px -1px 0px #ffffff, 3px 3px 0px #ffffff, 6px 6px 0px #cccccc;*/
 }
 
 h2 {
@@ -180,7 +180,7 @@ p {
 /*****  form  *****/
 .textForm {
     width: 300px;
-    height: 400px;
+    /*height: 100%;*/
     padding: 20px;
     border-radius: 10px;
     /*    border: 5px solid #fff;*/
@@ -219,4 +219,6 @@ p {
     top: 25%;
     left: 53%;
 }
+
+
 

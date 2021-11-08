@@ -1,0 +1,76 @@
+﻿@model PetManagement.Models.USER_INFO
+@{
+    ViewBag.Title = "Reset";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/windowAlert.css" rel="stylesheet" />
+<link href="~/Content/Login.css" rel="stylesheet" />
+
+<div class="modal-header">
+</div>
+
+@using (Html.BeginForm("Reset", "Login", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="rerun"></div>
+    <div class="container">
+        <div class="card"></div>
+        <div class="card">
+            <h1 class="title">Reset Password</h1>
+            <form>
+                <div class="input-container">
+                    <input type="email" id="EMAIL" name="EMAIL" required="required" />
+                    <label for="EMAIL">Email</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="input-container">
+                    <input type="password" id="PASSWORD" name="PASSWORD" required="required" />
+                    <label for="PASSWORD">密碼</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="button-container">
+                    <button id="btnReset" type="button"><span>Reset</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/windowAlert.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#btnReset').on('click', function () {
+           var formData = new FormData();
+            formData.append('EMAIL', $('input[name="EMAIL"]').val());
+            formData.append('PASSWORD', $('input[name="PASSWORD"]').val());
+
+            $.ajax({
+                url: "@(Url.Action("Reset", "Login"))",
+                type: "POST",
+                data: formData,//
+                contentType: false, //required
+                processData: false, // required
+                success: function (data) {
+                    debugger;
+                    if (data.status === false) {
+                        swal("重設密碼失敗", data.message, "error");
+                    }
+                    else {
+                        swal("重設密碼成功", "請重新登入！", "success").then(
+                            function () { location.href = "@(Url.Action("Index", "Login"))" }
+                        );
+                    }
+                }
+            })
+        });
+
+    })
+</script>

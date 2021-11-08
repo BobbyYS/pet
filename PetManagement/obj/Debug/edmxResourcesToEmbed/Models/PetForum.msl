@@ -17,5 +17,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="FORUM">
+      <EntityTypeMapping TypeName="PetForumModel.FORUM">
+        <MappingFragment StoreEntitySet="FORUM">
+          <ScalarProperty Name="MDF_DT" ColumnName="MDF_DT" />
+          <ScalarProperty Name="CRT_DT" ColumnName="CRT_DT" />
+          <ScalarProperty Name="IS_PUBLIC" ColumnName="IS_PUBLIC" />
+          <ScalarProperty Name="UP_ID" ColumnName="UP_ID" />
+          <ScalarProperty Name="VIDEO" ColumnName="VIDEO" />
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

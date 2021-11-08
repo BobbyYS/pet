@@ -10,17 +10,33 @@
       <PropertyRef Name="IS_USE" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="USER_NAME" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="PASSWORD" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="TEL" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="ADDR" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-    <Property Name="SEX" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TEL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ADDR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SEX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="CRT_DT" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="MDF_DT" Type="DateTime" Precision="3" />
     <Property Name="IS_USE" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityContainer Name="PetForumEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="USER_INFO" EntityType="Self.USER_INFO" />
+    <EntitySet Name="FORUM" EntityType="PetForumModel.FORUM" />
   </EntityContainer>
+  <EntityType Name="FORUM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_ID" Type="Int32" Nullable="false" />
+    <Property Name="USER_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MESSAGE" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IMG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VIDEO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UP_ID" Type="Int32" Nullable="false" />
+    <Property Name="IS_PUBLIC" Type="Boolean" Nullable="false" />
+    <Property Name="CRT_DT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MDF_DT" Type="DateTime" Precision="3" />
+  </EntityType>
 </Schema>
