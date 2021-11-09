@@ -1,16 +1,11 @@
-﻿@model PetManagement.ViewModels.USER_INFO
+﻿@model PetManagement.Models.USER_INFO
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/bootstrap.css" rel="stylesheet" />
-<link href="~/Content/PublicStyle.css" rel="stylesheet" />
-<link href="~/Content/bootstrap4-btn.css" rel="stylesheet" />
-<link href="~/Content/font-awesome.css" rel="stylesheet" />
-<link href="~/Content/main.css" rel="stylesheet" />
 <link href="~/Content/windowAlert.css" rel="stylesheet" />
-<link href="~/Content/Stock.css" rel="stylesheet" />
+<link href="~/Content/Login.css" rel="stylesheet" />
 
 <div class="modal-header">
 </div>
@@ -19,59 +14,71 @@
 {
     @Html.AntiForgeryToken()
 
-    <body class="loginBody">
-        <div id="signUp_form" class="textForm">
-            <!-- 註冊 -->
-            <h2 style="color: #0cc78c ">註 冊</h2>
-            <form action="#" class="form" id="form1">
-                <div class="input">
-                    @Html.TextBoxFor(model => model.USER_NAME, new { @class = "form-control", placeholder = "姓名" })
-                    @Html.ValidationMessageFor(m => m.USER_NAME, "", new { @class = "text-danger", @style = "color:red" })
+    <div class="rerun"></div>
+    <div class="container">
+        <div class="card"></div>
+        <div class="card">
+            <h1 class="title">Login</h1>
+            <form>
+                <div class="input-container">
+                    <input type="email" id="LEMAIL" name="LEMAIL" required="required" />
+                    <label for="EMAIL">Email</label>
+                    <div class="bar"></div>
                 </div>
-                <div class="input">
-                    @Html.TextBoxFor(model => model.EMAIL, new { @class = "form-control", placeholder = "Email", style = "margin-top: 10px" })
-                    @Html.ValidationMessageFor(m => m.EMAIL, "", new { @class = "text-danger", @style = "color:red" })
+                <div class="input-container">
+                    <input type="password" id="LPASSWORD" name="LPASSWORD" required="required" />
+                    <label for="PASSWORD">密碼</label>
+                    <div class="bar"></div>
                 </div>
-                <div class="input">
-                    @Html.PasswordFor(model => model.PASSWORD, new { @class = "form-control", placeholder = "密碼", style = "margin-top: 10px" })
-                    @Html.ValidationMessageFor(m => m.PASSWORD, "", new { @class = "text-danger", @style = "color:red" })
+                <div class="button-container">
+                    <button id="btnLogin" type="button"><span>Go</span></button>
                 </div>
-                <div class="input">
-                    @Html.TextBoxFor(model => model.TEL, new { @class = "form-control", placeholder = "電話", style = "margin-top: 10px" })
-                    @Html.ValidationMessageFor(m => m.TEL, "", new { @class = "text-danger", @style = "color:red" })
-                </div>
-                <div class="input">
-                    @Html.TextBoxFor(model => model.ADDR, new { @class = "form-control", placeholder = "地址", style = "margin-top: 10px" })
-                    @Html.ValidationMessageFor(m => m.ADDR, "", new { @class = "text-danger", @style = "color:red" })
-                </div>
-                <div class="input">
-                    @Html.TextBoxFor(model => model.SEX, new { @class = "form-control", placeholder = "性別", style = "margin-top: 10px" })
-                    @Html.ValidationMessageFor(m => m.SEX, "", new { @class = "text-danger", @style = "color:red" })
-                </div>
-                <button id="btnRegister" class="okButton" style="margin-top: 30px; width: 9vw; height: 2.4vw; ">註 冊</button>
+                <div class="footer"><a href="@(Url.Action("Reset", "Login"))">Forgot your password?</a></div>
             </form>
         </div>
-
-        <div id="signUp_button" class="buttonForm">
-            <button class="rainbow-button" id="signIn" alt="登 入"></button>
-        </div>
-
-        <div id="signIn_form" class="textForm" style="visibility: hidden;left: 53%;">
-            <!-- 登入 -->
-            <h2>登 入</h2>
-            <form action="#" class="form" id="form1">
-                <input type="email" placeholder="Email" class="input" style="margin-top: 10px" />
-                <input type="password" placeholder="密碼" class="input" style="margin-top: 10px" /><br />
-                <a href="#" class="link">忘記密碼</a><br />
-                <button class="okButton" style="margin-top: 30px; width: 9vw; height: 2.4vw;">登 入</button>
+        <div class="card alt">
+            <div class="toggle"></div>
+            <h1 class="title">Register<div class="close"></div></h1>
+            <form id="registerForm">
+                <div class="input-container">
+                    <input type="text" id="USER_NAME" required="required" />
+                    <label for="USER_NAME">姓名</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="input-container">
+                    <input type="email" id="EMAIL" name="EMAIL" required="required" />
+                    <label for="EMAIL">Email</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="input-container">
+                    <input type="password" id="PASSWORD" name="PASSWORD" required="required" />
+                    <label for="PASSWORD">密碼</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="input-container">
+                    <input type="tel" id="TEL" name="TEL" />
+                    <label for="TEL">電話</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="ADDR" name="ADDR" />
+                    <label for="ADDR">地址</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="input-container">
+                    <div class="button dropdown">
+                        <select id="SEX" name="SEX">
+                            <option value="M">男孩</option>
+                            <option value="F">女孩</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button id="submit" type="button"><span>Next</span></button>
+                </div>
             </form>
         </div>
-
-        <div id="signIn_button" class="buttonForm" style="visibility: hidden;left: 23%; ">
-            <button class="rainbow-button" style="color: #0cc78c" id="signUp" alt="註 冊"></button>
-        </div>
-
-    </body>
+    </div>
 }
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
@@ -81,81 +88,64 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/windowAlert.js"></script>
 
-<script>
-
-    signIn.onclick = function () {
-        document.getElementById('signUp_form').style.visibility = 'hidden';
-        document.getElementById('signUp_button').style.visibility = 'hidden';
-        document.getElementById('signIn_form').style.visibility = 'visible';
-        document.getElementById('signIn_button').style.visibility = 'visible';
-    };
-
-    signUp.onclick = function () {
-        document.getElementById('signUp_form').style.visibility = 'visible';
-        document.getElementById('signUp_button').style.visibility = 'visible';
-        document.getElementById('signIn_form').style.visibility = 'hidden';
-        document.getElementById('signIn_button').style.visibility = 'hidden';
-    };
-
-    (function (w, $) {
-        'use strict';
-        var changePassword = $('#changePassword'),//變更密碼 a tag
-            $form = $('form#LoginForm'), //Form
-            validator = $form.data().kendoSpeedValidator;
-
-
-        // ******** 卡片切換 ********
-        $('#signIn').on('click', function (e) {
-            $('#signUp_form').css("display", "none")
-            $('#signUp_button').css("display", "none")
-            $('#signIn_form').css("display", "display")
-            $('#signIn_button').css("display", "display")
+<script type="text/javascript">
+    $(function () {
+        $('.toggle').on('click', function () {
+            $('.container').stop().addClass('active');
         });
 
-        // ******** "註冊"button click ********
-        $('#btnRegister').on('click', function (e) {
-            //修正會submit兩次的問題
-            e.preventDefault();
-            //表單驗證
-            if (!validator.validate()) {
-                return;
-            }
-            $form.attr('action', $('#loginUrl').val());
-            $form.submit();
+        $('.close').on('click', function () {
+            $('.container').stop().removeClass('active');
         });
 
-        // ******** "登入"button click ********
-        $('#btnUserLogin').on('click', function (e) {
-            //修正會submit兩次的問題
-            e.preventDefault();
-            //表單驗證
-            if (!validator.validate()) {
-                return;
-            }
-            $form.attr('action', $('#loginUrl').val());
-            $form.submit();
-        });
+        $('#submit').on('click', function () {
+           var formData = new FormData();
+            formData.append("USER_NAME", $("#USER_NAME").val());
+            formData.append('EMAIL', $('input[name="EMAIL"]').val());
+            formData.append('PASSWORD', $('input[name="PASSWORD"]').val());
+            formData.append('TEL', $('input[name="TEL"]').val());
+            formData.append('ADDR', $("#ADDR").val());
+            formData.append('SEX', $("#SEX").val());
 
-        // ********** 變更密碼 **********
-        changePassword.on('click', function (e) {
-            //表單驗證
-            if (!validator.validate()) {
-                return;
-            }
-            var action = changePassword.attr('data-speed-url'),
-                condition = $form.serializeFormJSON();
-            $.post(action, condition)
-                .done(function (data) {
-                    if (data) {
-                        // url要帶入原本的queryString以支援redirect
-                        $form.attr('action', $('#changePasswordUrl').val() + w.location.search);
-                        $form.submit();
+            $.ajax({
+                url: "@(Url.Action("Index", "Login"))",
+                type: "POST",
+                data: formData,//
+                contentType: false, //required
+                processData: false, // required
+                success: function (data) {
+                    if (data.status === false) {
+                        swal("註冊會員失敗", data.message, "error");
                     }
-                })
-                .fail(function (data) {
-                    $('#errorMessage').text(data.responseJSON.Message);
-                });
+                    else {
+                        swal("註冊會員成功","請重新登入！","success").then(
+                            function () { location.reload(); }
+                        );
+                    }
+                }
+            })
         });
 
+        $('#btnLogin').on('click', function () {
+           var formData = new FormData();
+            formData.append('EMAIL', $('input[name="LEMAIL"]').val());
+            formData.append('PASSWORD', $('input[name="LPASSWORD"]').val());
+
+            $.ajax({
+                url: "@(Url.Action("Login", "Login"))",
+                type: "POST",
+                data: formData,//
+                contentType: false, //required
+                processData: false, // required
+                success: function (data) {
+                    if (data.status === false) {
+                        swal("登入失敗", data.message, "error");
+                    }
+                    else {
+                        location.href = "@(Url.Action("Index", "Home"))";
+                    }
+                }
+            })
+        });
     })
 </script>
