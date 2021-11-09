@@ -263,3 +263,7 @@ C:\Users\kfes9\OneDrive\桌面\怡融專題\pet\PetManagement\obj\Debug\PetManag
 C:\Users\kfes9\OneDrive\桌面\怡融專題\pet\PetManagement\obj\Debug\PetManagement.dll
 C:\Users\kfes9\OneDrive\桌面\怡融專題\pet\PetManagement\obj\Debug\PetManagement.pdb
 C:\Users\kfes9\OneDrive\桌面\怡融專題\pet\PetManagement\bin\zh-Hant\EntityFramework.SqlServer.resources.dll
+C:\Users\weiha\Documents\GitHub\pet\PetManagement\obj\Debug\PetManagement.csprojAssemblyReference.cache
+C:\Users\weiha\Documents\GitHub\pet\PetManagement\obj\Debug\PetManagement.csproj.CoreCompileInputs.cache
+C:\Users\weiha\Documents\GitHub\pet\PetManagement\obj\Debug\PetManagement.dll
+C:\Users\weiha\Documents\GitHub\pet\PetManagement\obj\Debug\PetManagement.pdb
