@@ -1,0 +1,122 @@
+﻿
+.member-card {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    margin: 10px;
+}
+
+    .member-card h4 {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        margin: 10px 0 5px;
+    }
+
+    .member-card .aggregate {
+        font-size: 28px;
+        display: inline-block;
+        width: 116px;
+        white-space: nowrap;
+    }
+
+        .member-card .aggregate .missed {
+            color: rgba(0, 0, 0, 0.325);
+        }
+
+        .member-card .aggregate .earned {
+            position: absolute;
+            left: 0;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+    .member-card > * {
+        position: relative;
+        z-index: 10;
+    }
+
+    .member-card img {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        z-index: 10;
+        border-radius: 15px;
+        box-shadow: 0 0 25px -15px #000;
+    }
+
+        .member-card img.shadow {
+            position: absolute;
+            filter: blur(10px);
+            top: 40px;
+            transform: scale(0.8);
+        }
+
+    .member-card:before,
+    .member-card:after {
+        transition: 0.125s all ease-out;
+    }
+
+    .member-card:before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        background: rgba(0, 0, 0, 0.25);
+        background: linear-gradient(to top right, #9c3cff, #c974ff);
+        top: 20%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: block;
+        clip-path: url("#sleeve");
+        z-index: 1;
+    }
+
+    .member-card:after {
+        content: "";
+        height: 20px;
+        background: #000;
+        position: absolute;
+        bottom: -4px;
+        left: 10%;
+        right: 10%;
+        background: linear-gradient(to top right, #9c3cff, #c974ff);
+        filter: blur(10px);
+        z-index: 0;
+    }
+
+    .member-card + .member-card:before,
+    .member-card + .member-card:after {
+        background: linear-gradient(to top right, #00ad7c, #00d8b0);
+    }
+
+    .member-card + .member-card + .member-card:before,
+    .member-card + .member-card + .member-card:after {
+        background: linear-gradient(to top right, #ff7043, #ff9f81);
+    }
+
+    .member-card + .member-card + .member-card + .member-card:before,
+    .member-card + .member-card + .member-card + .member-card:after {
+        background: linear-gradient(to top right, #ff396e, #ff6c95);
+    }
+
+    .member-card,
+    .member-card * {
+        transition: 0.125s all ease-out;
+        perspective: 600px;
+    }
+
+        .member-card:hover {
+            cursor: pointer;
+        }
+
+            .member-card:hover .logo {
+                transform: translateY(-5%) rotateX(-10deg) scale(1.05);
+            }
+
+            .member-card:hover:before {
+                transform: translateY(1.5%) rotateX(10deg) scale(0.975);
+                filter: brightness(110%) contrast(1.05);
+            }

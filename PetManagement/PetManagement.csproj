@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -155,12 +156,14 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MESSAGE.cs" />
+    <Compile Include="ViewModels\USERINFO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Login.css" />
     <Content Include="Content\Message.css" />
     <Content Include="Content\PublicStyle.css" />
     <Content Include="Content\Stock.css" />
+    <Content Include="Content\UserStyle.css" />
     <Content Include="Images\Header\icon\chat.png" />
     <Content Include="Images\Header\icon\pet-house_color.png" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -192,6 +195,11 @@
     <Content Include="Images\Header\icon\qa.png" />
     <Content Include="Images\send.png" />
     <Content Include="Images\triangle.png" />
+    <Content Include="IPet\file\2021-11-07-21-22-11.jpg" />
+    <Content Include="IPet\file\2021-11-07-22-11-01.jpg" />
+    <Content Include="IPet\file\2021-11-07-22-12-06.jpg" />
+    <Content Include="IPet\file\people\user.jpg" />
+    <Content Include="IPet\file\public\user.jpg" />
     <Content Include="Models\PetForum.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PetForum.Context.cs</LastGenOutput>
@@ -298,6 +306,7 @@
     <Content Include="Views\Home\_Message.cshtml" />
     <Content Include="Views\Login\Reset.cshtml" />
     <Content Include="Views\Shared\_GetUserName.cshtml" />
+    <Content Include="Views\UserInfo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PetManagement.ViewModels;
 
 namespace PetManagement.Controllers
 {
@@ -21,7 +22,7 @@ namespace PetManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(USER_INFO userInfo)
+        public ActionResult Index(USERINFO userInfo)
         {
             string errorMessage = string.Empty;
             bool Success = false;
@@ -52,7 +53,7 @@ namespace PetManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(USER_INFO userInfo)
+        public ActionResult Login(USERINFO userInfo)
         {
             string errorMessage = string.Empty;
             bool Success = false;
@@ -81,7 +82,7 @@ namespace PetManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult Reset(USER_INFO userInfo)
+        public ActionResult Reset(USERINFO userInfo)
         {
             string errorMessage = string.Empty;
             bool Success = false;
