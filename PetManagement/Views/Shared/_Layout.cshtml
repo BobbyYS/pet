@@ -30,9 +30,11 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav ">
+                <li><a href="">論壇中心</a></li>
                 <li><a href="">地圖</a></li>
                 <li><a href="">QA區</a></li>
                 <li><a href="">新手計算機</a></li>
+                <li><a href="">會員資料</a></li>
             </ul>
         </div>
         </div>
@@ -46,6 +48,12 @@
                 </div>
             </div>
             <div class="scroll">
+                <div class="row">
+                    <div class="col-md-12 sliderMarginTop" id="iconReport">
+                        <img src="~/Images/Header/icon/chat.png" class="sliderIcon" />
+                        <div class="sliderTitle"><a href="x"><p class="card-text">論壇中心</p></a></div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12 sliderMarginTop" id="iconPromotion">
                         <img src="~/Images/Header/icon/map.png" class="sliderIcon" />
@@ -64,17 +72,19 @@
                         <div class="sliderTitle"><a href=""><p class="card-text ccText">新手計算機</p></a></div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12 sliderMarginTop" id="iconBank">
+                        <img src="~/Images/Header/icon/membercard.png" class="sliderIcon" />
+                        <div class="sliderTitle"><a href=""><p class="card-text ccText">會員資料</p></a></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="navbar navbar-fixed-top sliderHeader">
             <div style="float:right">
                 <img src="~/images/Header/user_circle.png" class="userIcon" />
                 <span class="userText">
-                    <a href="@Url.Action("Index", "Login")">
-                        @*<a href="@Url.Action("Index", "Login")">*@
-                        登入 / 註冊
-                    </a>
-                    @*@{Html.RenderAction("GetUserName", "Home");}*@
+                    @{Html.RenderAction("GetUserName", "Login");}
                 </span>
             </div>
         </div>
