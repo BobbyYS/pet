@@ -157,6 +157,7 @@
     <Compile Include="ViewModels\MESSAGE.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Login.css" />
     <Content Include="Content\Message.css" />
     <Content Include="Content\PublicStyle.css" />
     <Content Include="Content\Stock.css" />
