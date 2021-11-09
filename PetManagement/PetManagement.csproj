@@ -125,6 +125,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\Fun_Public.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -154,12 +155,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MESSAGE.cs" />
-    <Compile Include="ViewModels\USER_INFO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Message.css" />
     <Content Include="Content\PublicStyle.css" />
     <Content Include="Content\Stock.css" />
+    <Content Include="Images\Header\icon\chat.png" />
     <Content Include="Images\Header\icon\pet-house_color.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -294,6 +295,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\_Message.cshtml" />
+    <Content Include="Views\Login\Reset.cshtml" />
+    <Content Include="Views\Shared\_GetUserName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
