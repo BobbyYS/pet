@@ -33,10 +33,9 @@
 
 /* SlideBar */
 .logo {
-    width: 140px;
-    float: left;
+    width: 70px;
     padding-top: 10px;
-    margin-left: 2px;
+    margin-left: 40px;
 }
 
 .subMenu {
@@ -832,10 +831,10 @@ ul li {
 
 @media(max-width: 767px) and (min-width: 476px) {
     .logo {
-        width: 120px;
+        width: 35px;
         float: left;
         padding-top: 15px;
-        margin-left: 10px;
+        margin-left: 0px;
     }
 
     .navbar-brand {
@@ -902,7 +901,6 @@ ul li {
 @media(min-width: 397px) and (max-width: 476px) {
     .logo {
         width: 95px;
-        float: left;
         padding-top: 15px;
         margin-left: 0px;
     }
@@ -967,7 +965,6 @@ ul li {
 @media(max-width: 397px) {
     .logo {
         width: 70px;
-        float: left;
         padding-top: 18px;
         margin-left: 0px;
     }

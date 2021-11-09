@@ -48,7 +48,7 @@
     width: calc(8.33333%*12);
 }
 
-.row {
+/*.row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -59,7 +59,7 @@
         box-sizing: border-box;
         margin: 0 0;
         padding: 1em;
-    }
+    }*/
 
 /* Grid Ends */
 html {
