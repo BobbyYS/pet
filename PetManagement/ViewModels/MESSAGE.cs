@@ -10,6 +10,7 @@ namespace PetManagement.ViewModels
     {
         public class Message 
         {
+            public string ID { get; set; }
             public string USER_ID { get; set; }
             public string USER_NAME { get; set; }
             public string MESSAGE { get; set; }

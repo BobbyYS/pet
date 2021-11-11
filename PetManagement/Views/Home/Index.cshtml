@@ -25,12 +25,12 @@
 {
     <div class="box">
         @{
-            Html.RenderAction("_Message", new { id = item.USER_ID, name = item.USER_NAME, time = item.CRT_DT, message = item.MESSAGE, img = item.IMG, commandList=item.COMMAND_LIST });
+            Html.RenderAction("_Message", new {id=item.ID, user_id = item.USER_ID, name = item.USER_NAME, time = item.CRT_DT, message = item.MESSAGE, img = item.IMG, commandList=item.COMMAND_LIST });
         }
     </div>
 }
 
-<script type="text/javascript">
+<script type="text/javascript" defer>
     var id = "@(Session["userId"])";
     var name = "@(Session["userName"])";
 
@@ -48,14 +48,75 @@
             $.ajax({
                 url: "@(Url.Action("AddMessage", "Home"))",
                 type: "POST",
-                data: formData,//,id: id, user: name, comment: $("#comment").val() },
+                data: formData,
                 contentType: false, //required
                 processData: false, // required
                 success: function (data) {
-                    //alert("留言成功");
                     location.reload();
                 }
             });
         }
     }
+
+    function SendCommand(message_id, comment) {
+        var formData = new FormData();
+        formData.append("file", null);
+        formData.append('upId', message_id)
+        formData.append('id', id)
+        formData.append('user', name)
+        formData.append('comment', comment)
+        debugger;
+        $.ajax({
+            url: "@(Url.Action("AddMessage", "Home"))",
+            type: "POST",
+            data: formData,
+            contentType: false, //required
+            processData: false, // required
+            success: function (data) {
+                addNewCommand(message_id, data, name, comment);
+                $('#myComment_' + message_id).val("");
+            }
+        });
+
+    }
+
+    function addNewCommand(message_id, imgPath, name, comment) {
+
+        //更多留言
+        const moreA = document.getElementById("more_" + message_id);
+        if (moreA == null) {
+            const moreDiv = document.getElementById("moreDiv_" + message_id);
+            const a = document.createElement('a');
+            a.textContent = '更多留言...';
+            a.setAttribute('id', 'more_' + message_id);
+            a.setAttribute('style', 'font-size: 0.7em; color: #428bca');
+            a.setAttribute('data-toggle', 'collapse');
+            a.setAttribute('href', '#' + message_id);
+            a.setAttribute('aria-expanded', 'false');
+            a.setAttribute('aria-controls', 'collapseExample');
+            moreDiv.appendChild(a);
+        }
+
+        //動態補上剛剛的留言
+        const div = document.getElementById(message_id);
+        const img = document.createElement('img');
+        const h5 = document.createElement('h5');
+        const span = document.createElement('span');
+        //圖片
+        img.setAttribute('class', 'sm-avatar');
+        if (imgPath != "" && imgPath != null && imgPath != "null") {
+            img.setAttribute('src', imgPath);
+        }
+        else {
+            img.setAttribute('src', '/IPet/file/public/user.jpg');
+        }
+        div.appendChild(img);
+
+        h5.textContent = name;
+        div.appendChild(h5);
+
+        span.textContent = comment;
+        h5.appendChild(span);
+    }
+
 </script>

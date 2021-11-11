@@ -124,6 +124,7 @@ namespace PetManagement.Models
 
                         //討論主題及留言資料
                         Message data = new Message();
+                        data.ID = dr["ID"].ToString().Trim();
                         data.USER_ID = dr["USER_ID"].ToString().Trim();
                         data.USER_NAME = dr["USER_NAME"].ToString().Trim();
                         data.MESSAGE = dr["MESSAGE"].ToString().Trim();
@@ -143,6 +144,23 @@ namespace PetManagement.Models
             }
             return dataList;
 
+        }
+
+
+        public string GetUserIMG(string user_id) 
+        {
+
+            string IMGpath = "";
+            string findSql = String.Format("SELECT top 1 IMG FROM USER_INFO" +
+            " WHERE IS_USE=1 AND ID="+ user_id +
+            " ORDER BY CRT_DT DESC");
+            DataTable img = GetDataTable(findSql);
+            if (img != null)
+            {
+                IMGpath = img.Rows[0]["ID"].ToString().Trim();
+            }
+
+            return IMGpath==null?"": IMGpath;
         }
 
     }

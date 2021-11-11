@@ -171,8 +171,8 @@ a {
 
     .box i {
         font-size: 1.5em;
-        transform: rotate(90deg);
-    }
+/*        transform: rotate(90deg);
+*/    }
 
     .box p, .box h4 {
         padding: 1em;

@@ -17,16 +17,17 @@ namespace PetManagement.Controllers
         Data data = new Data();
         public ActionResult Index()
         {
-            //Session["userId"] = 1;
-            //Session["userName"] = "陳怡禎";
+            Session["userId"] = 7;
+            Session["userName"] = "陳怡融";
             List<Message> messageList = data.MessageData();
             return View(messageList);
         }
 
-        public ActionResult _Message(string id, string name, DateTime time, string message, string img, List<Command> commandList)
+        public ActionResult _Message(string id,string user_id, string name, DateTime time, string message, string img, List<Command> commandList)
         {
             Message messageInf = new Message();
-            messageInf.USER_ID = id;
+            messageInf.ID = id;
+            messageInf.USER_ID = user_id;
             messageInf.USER_NAME = name;
             messageInf.CRT_DT = time;
             messageInf.MESSAGE = message;
@@ -48,20 +49,25 @@ namespace PetManagement.Controllers
         /// <param name="user">使用者</param>
         /// <param name="comment">評論</param>
         /// <returns></returns>
-        public bool AddMessage(HttpPostedFileBase file,string id, string user, string comment, bool isPublic = true, int upId = 0)
+        public string AddMessage(HttpPostedFileBase file,string id, string user, string comment, bool isPublic = true, int upId = 0)
         {
             bool Success = false;
-            Tuple<bool, string> fileUplodResult = FileUplod(file);
+            string user_IMG="";
+            Tuple<bool, string> fileUplodResult = new Tuple<bool, string>(true,"");
+            if (file != null) { fileUplodResult = FileUplod(file); }
             if (fileUplodResult.Item1)
             {
                 Success = data.ExecChangeData("INSERT INTO FORUM (USER_ID,USER_NAME, MESSAGE,IMG, UP_ID,IS_PUBLIC,CRT_DT)"
                     + " VALUES(" + id + ",'" + user + "','"
                     + comment + "','"+ fileUplodResult.Item2 + "'," + upId.ToString() + ",1,'" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "')");
+
+                user_IMG = data.GetUserIMG(id);
+
             }
             else {
                 Response.Write("<script language=javascript>alert(' 檔案上傳失敗，請洽系統管理員 ');</" + "script>");
             }
-            return Success;
+            return user_IMG;
 
         }
 
@@ -76,7 +82,7 @@ namespace PetManagement.Controllers
             try
             {
                 //判斷是否有上傳檔案
-                if (Request.Files["file"].ContentLength > 0)
+                if (Request.Files["file"].ContentLength > 0 )
                 {
                     string extension = Path.GetExtension(file.FileName);
                     string fileSavedPath = WebConfigurationManager.AppSettings["filePath"].ToString();//取得在專案中的路徑
