@@ -6,28 +6,41 @@
 
 <h2><b>會員資料</b></h2>
 <link href="~/Content/UserStyle.css" rel="stylesheet" />
-<div class="member-card">
-    <img class="logo" src="@Model.USER_IMG" />
-    <h4>@Model.USER_NAME</h4>
-</div>
 
-@*<div class="member-card">
-    <img class="shadow" src="https://static.whirlocal.io/uploads/2019/06/profile-300x300.jpg" />
-    <img class="logo" src="https://static.whirlocal.io/uploads/2019/06/profile-300x300.jpg" />
-    <h4>Bentley's Restaurant</h4>
-</div>
-
-<div class="member-card">
-    <img class="shadow" src="https://static.whirlocal.io/uploads/2019/06/profile-300x300.jpg" />
-    <img class="logo" src="https://static.whirlocal.io/uploads/2019/06/profile-300x300.jpg" />
-    <h4>Bentley's Restaurant</h4>
+<div class="centered">
+    <a data-fancybox="gallery" class="fancybox" data-type="iframe" style="color: aliceblue;" href="@Url.Action("PetCreate", "UserInfo")">
+        <div class="plus" id="plus">
+            <div class="plus__line plus__line--v"></div>
+            <div class="plus__line plus__line--h"></div>
+        </div>
+    </a>
 </div>
 
 <div class="member-card">
-    <img class="shadow" src="https://static.whirlocal.io/uploads/2019/06/profile-300x300.jpg" />
-    <img class="logo" src="https://static.whirlocal.io/uploads/2019/06/profile-300x300.jpg" />
-    <h4>Bentley's Restaurant</h4>
-</div>*@
+    <a data-fancybox="gallery" class="fancybox" data-type="iframe" style="color: aliceblue;" href="@Url.Action("Owner", "UserInfo")">
+        <img class="logo" src="@Model.USER_IMG" />
+        <h4>@Model.USER_NAME</h4>
+    </a>
+</div>
+
+@foreach (var item in Model.petinfoList)
+{
+    <div class="member-card">
+        <a data-fancybox="gallery" class="fancybox" data-type="iframe" style="color: aliceblue;" href="@Url.Action("PetModify", "UserInfo", new { Id = item.ID })">
+            <img class="logo" src="@item.IMG" />
+            <h4>@item.PET_NAME</h4>
+        </a>
+        <div class="icon-trash">
+            <a onclick="deleteClick(@item.ID)">
+                <div class="trash-lid" style="background-color: #C5BFB6"></div>
+                <div class="trash-container" style="background-color: #C5BFB6"></div>
+                <div class="trash-line-1"></div>
+                <div class="trash-line-2"></div>
+                <div class="trash-line-3"></div>
+            </a>
+        </div>
+    </div>
+}
 
 <svg width="0" height="0" viewBox="0 0 340 335">
     <defs>
@@ -37,3 +50,39 @@
     </defs>
 </svg>
 
+@section scripts{
+    <script type="text/javascript">
+    function deleteClick(id) {
+                swal({
+                    title: '刪除?',
+                    text: '確定要刪除該筆寵物?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '確定',
+                    cancelButtonText: '取消'
+                }).then(
+                    function (result) {
+                        console.log(result);
+                        if (result === true) {
+                            $.ajax({
+                                url: '@Url.Action("PetDelete")',
+                                dataType: 'json',
+                                type: 'POST',
+                                async: false,
+                                data: { Id: id },
+                                success: function (data) {
+                                }
+                            });
+                            swal(
+                                '完成',
+                                '刪除成功！',
+                                'success'
+                            ).then(function () {
+                                location.href = location.href;
+                            })
+                        }
+                    }
+                ).catch(swal.noop);
+            }
+    </script>
+}

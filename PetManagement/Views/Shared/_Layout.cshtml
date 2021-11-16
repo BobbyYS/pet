@@ -12,7 +12,6 @@
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Scripts/fancybox/dist/jquery.fancybox.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="~/Images/Header/icon/pet-house_color.png" type="image/x-icon" />
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
 </head>
 <body>
@@ -30,13 +29,11 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav ">
-                <li><a href="">論壇中心</a></li>
-                <li><a href="">地圖</a></li>
-                <li><a href="">QA區</a></li>
-                <li><a href="">新手計算機</a></li>
-                <li><a href="">會員資料</a></li>
+                @{
+                    TempData["Mobile"] = "Mobile";
+                    Html.RenderAction("GetMenu", "Login");
+                }
             </ul>
-        </div>
         </div>
         <div class="slideBar">
             <div class="sysMarginTop" id="logo">
@@ -47,38 +44,10 @@
                     <a href="@Url.Action("Index", "Home")">iPet</a>
                 </div>
             </div>
-            <div class="scroll">
-                <div class="row">
-                    <div class="col-md-12 sliderMarginTop" id="iconReport">
-                        <img src="~/Images/Header/icon/chat.png" class="sliderIcon" />
-                        <div class="sliderTitle"><a href="@Url.Action("Index", "Home")"><p class="card-text">論壇中心</p></a></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 sliderMarginTop" id="iconPromotion">
-                        <img src="~/Images/Header/icon/map.png" class="sliderIcon" />
-                        <div class="sliderTitle"><a href="x"><p class="card-text ccText">地圖</p></a></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 sliderMarginTop" id="iconGift">
-                        <img src="~/Images/Header/icon/qa.png" class="sliderIcon" />
-                        <div class="sliderTitle">  <a href=""> <p class="card-text">QA區</p></a></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 sliderMarginTop" id="iconBank">
-                        <img src="~/Images/Header/icon/calculator.png" class="sliderIcon" />
-                        <div class="sliderTitle"><a href=""><p class="card-text ccText">新手計算機</p></a></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 sliderMarginTop" id="iconBank">
-                        <img src="~/Images/Header/icon/membercard.png" class="sliderIcon" />
-                        <div class="sliderTitle"><a href="@Url.Action("Index", "UserInfo")"><p class="card-text ccText">會員資料</p></a></div>
-                    </div>
-                </div>
-            </div>
+            @{
+                TempData["Mobile"] = null;
+                Html.RenderAction("GetMenu", "Login");
+            }
         </div>
         <div class="navbar navbar-fixed-top sliderHeader">
             <div style="float:right">

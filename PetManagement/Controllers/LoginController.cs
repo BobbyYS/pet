@@ -69,6 +69,7 @@ namespace PetManagement.Controllers
                 DataRow dr = result.Rows[0];
                 Session["userId"] = dr[0].ToString().Trim();
                 Session["userName"] = dr[1].ToString().Trim();
+                ViewBag.UserName = dr[1].ToString().Trim();
             }
 
             var json = new { status = Success, message = errorMessage };
@@ -86,7 +87,7 @@ namespace PetManagement.Controllers
         {
             string errorMessage = string.Empty;
             bool Success = false;
-            DataTable result = data.GetDataTable("SELECT * FROM USER_INFO WHERE EMAIL = '" + userInfo.EMAIL + "'");
+            DataTable result = data.GetDataTable("SELECT * FROM USER_INFO WHERE EMAIL = '" + userInfo.EMAIL + "' AND IS_USE = '1' ");
 
             if (result.Rows.Count == 0)
             {
@@ -97,7 +98,7 @@ namespace PetManagement.Controllers
                 //新增
                 userInfo.PASSWORD = pub.SHA512(userInfo.PASSWORD);
 
-                Success = data.ExecChangeData("UPDATE USER_INFO SET PASSWORD = '" + userInfo.PASSWORD + "' WHERE EMAIL = '" + userInfo.EMAIL + "'");
+                Success = data.ExecChangeData("UPDATE USER_INFO SET PASSWORD = '" + userInfo.PASSWORD + "' WHERE EMAIL = '" + userInfo.EMAIL + "' AND IS_USE = '1' ");
 
                 if (!Success)
                 {
@@ -110,7 +111,6 @@ namespace PetManagement.Controllers
             return Json(json, JsonRequestBehavior.AllowGet);
         }
 
-        [ChildActionOnly]
         public ActionResult GetUserName()
         {
             string userName = Session["userName"] as string;
@@ -123,6 +123,14 @@ namespace PetManagement.Controllers
         {
             Session.Contents.RemoveAll();
             return Json(JsonRequestBehavior.AllowGet);
+        }
+
+        //根據權限顯示Menu
+        public ActionResult GetMenu()
+        {
+            string userName = Session["userName"] as string;
+            ViewBag.UserName = userName;
+            return PartialView("_GetMenu");
         }
     }
 }

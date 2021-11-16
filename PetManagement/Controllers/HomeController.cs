@@ -17,8 +17,8 @@ namespace PetManagement.Controllers
         Data data = new Data();
         public ActionResult Index()
         {
-            Session["userId"] = 7;
-            Session["userName"] = "陳怡融";
+            //Session["userId"] = 7;
+            //Session["userName"] = "陳怡融";
             List<Message> messageList = data.MessageData();
             return View(messageList);
         }
