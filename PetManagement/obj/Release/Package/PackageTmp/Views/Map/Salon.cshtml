@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        .iframe-rwd {
+            position: relative;
+            padding-bottom: 65.25%;
+            padding-top: 30px;
+            height: 0;
+            overflow: hidden;
+        }
+
+            .iframe-rwd iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+    </style>
+</head>
+<body>
+    <div class="iframe-rwd">
+        <iframe width="600" height="450" frameborder="0" style="border:0" allowfullscreen  src="https://www.google.com/maps/embed/v1/search?key=AIzaSyD5UcjmC3iaXEmpgU4Exwe-gzteRA1Zges&q=寵物美容&zoom=14">
+        </iframe>
+    </div>
+</body>
+</html>

@@ -25,7 +25,7 @@
 {
     <div class="box">
         @{
-            Html.RenderAction("_Message", new {id=item.ID, user_id = item.USER_ID, name = item.USER_NAME, time = item.CRT_DT, message = item.MESSAGE, img = item.IMG, commandList=item.COMMAND_LIST });
+            Html.RenderAction("_Message", new {id=item.ID, user_id = item.USER_ID, user_img=item.USER_IMG, name = item.USER_NAME, time = item.CRT_DT, message = item.MESSAGE, img = item.IMG, commandList=item.COMMAND_LIST });
         }
     </div>
 }
@@ -36,7 +36,13 @@
 
     function SaveCommand() {
         if ($("#comment").val().trim() === "") {
-            alert("評論不可空白");
+            swal(
+                '提示',
+                '評論不可空白',
+                'info'
+            ).then(function () {
+                location.href = location.href;
+            })
         }
         else {
             var formData = new FormData();
@@ -118,5 +124,38 @@
         span.textContent = comment;
         h5.appendChild(span);
     }
+
+        function deleteClick(id) {
+                swal({
+                    title: '刪除?',
+                    text: '確定要刪除該筆討論?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '確定',
+                    cancelButtonText: '取消'
+                }).then(
+                    function (result) {
+                        console.log(result);
+                        if (result === true) {
+                            $.ajax({
+                                url: '@Url.Action("MessageDelete")',
+                                dataType: 'json',
+                                type: 'POST',
+                                async: false,
+                                data: { Id: id },
+                                success: function (data) {
+                                }
+                            });
+                            swal(
+                                '完成',
+                                '刪除成功！',
+                                'success'
+                            ).then(function () {
+                                location.href = location.href;
+                            })
+                        }
+                    }
+                ).catch(swal.noop);
+            }
 
 </script>

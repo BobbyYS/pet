@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "eat";
+}
+<style>
+    .h2{text-align:center ;
+         color:khaki;
+         background-color:lightgray;
+         font-size:36px;
+         
+ 
+    }
+    .h4{text-align:center;
+        color:red;
+        font-size:12px;      
+    }
+    .p{text-align:center;
+
+    }
+</style>
+ <p style="background-color:yellow;width:unset;height:40px;"></p>
+
+<h2 class="h2">寵物飲食計算機</h2>
+<h4 class="h4">(需求還是會因為運動量、肌肉量以及年齡而有所不同，所以這些預估值還是要依照每個不同個體做調整喔！)</h4>
+<p class="p">
+    請輸入寵物體重(kg):
+    <input type="number" id="a" value="text" />
+</p>
+<p class="p">
+    請選擇寵物狀況:
+    <select id="b">
+        <option value="2.5">發育中的幼貓</option>
+        <option value="1.4">未結紮的成貓</option>
+        <option value="1.2">已結紮的成貓</option>
+        <option value="1">肥胖傾向成貓</option>
+        <option value="0.8">減重中的成貓</option>
+        <option value="1.8">懷孕中的母貓</option>
+        <option value="4">哺乳中的母貓</option>
+
+        <option value="3">4個月以下幼犬</option>
+        <option value="2">4-12個月的幼犬</option>
+        <option value="1.8">未結紮的成犬</option>
+        <option value="1.6">已結紮的成犬</option>
+        <option value="1.4">肥胖傾向成犬</option>
+        <option value="1.2">減重中的成犬</option>
+        <option value="1.8">懷孕6周內母犬</option>
+        <option value="3">懷孕7-9周母犬</option>
+        <option value="6">哺乳中的母犬</option>
+
+    </select>
+</p>
+
+
+<script>
+
+    function re(a, b) {
+        var A = (a.value * a.value) * a.value
+        var first = Math.sqrt(A)
+        var second = Math.sqrt(first) * 70
+        var rer = Math.round(second)
+        var result = rer * parseFloat(b.value)
+        alert("寵物建議攝取熱量為:" + result + "(kcal/日)")
+    }
+    function kcal(a, b, k, g) {
+        var A = (a.value * a.value) * a.value
+        var first = Math.sqrt(A)
+        var second = Math.sqrt(first) * 70
+        var rer = Math.round(second)
+        var result = rer * parseFloat(b.value)
+        var K = result / parseFloat(k.value)
+        var G = K * parseFloat(g.value)
+        alert("建議攝取量為:" + G + "g")
+
+    }
+
+</script>
+<p class="p">
+    <input type="button" onclick="re(a,b) " id="btn" value="計算" />
+</p>
+<p class="h2">食物熱量轉換</p>
+<p class="p">輸入食物之重量(g):<input type="number" id="g" /></p>
+<p class="p">輸入食物之熱量(kcal):<input type="number" id="k" /></p>
+<p class=" p">
+    <input type="button" onclick="kcal(a,b,k,g) " id="btn" value="計算" />
+</p>
+<img src="https://www.hapet.com.tw/wp-content/uploads/2014/09/%E9%A3%9F%E7%89%A9%E7%86%B1%E9%87%8F%E8%A1%A8.gif" />
+
+
+<p class="h4">(上圖為行政院衛生署所提供的資料，已大約篩選出比較常見於寵物飲食中的食材)
+(此圖僅供參考，實際熱量請以商品上標示為主)</p>
+
+
+

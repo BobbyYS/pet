@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using static PetManagement.ViewModels.MESSAGE;
  
 namespace PetManagement.Models
@@ -116,7 +117,7 @@ namespace PetManagement.Models
                         foreach (DataRow dr2 in commandTable.Rows)
                         {
                             Command command = new Command();
-                            command.IMG= dr2["IMG"].ToString().Trim();
+                            command.IMG= GetUserIMG(dr2["USER_ID"].ToString().Trim());
                             command.USER_NAME= dr2["USER_NAME"].ToString().Trim();
                             command.MESSAGE= dr2["MESSAGE"].ToString().Trim();
                             commandList.Add(command);
@@ -127,6 +128,7 @@ namespace PetManagement.Models
                         data.ID = dr["ID"].ToString().Trim();
                         data.USER_ID = dr["USER_ID"].ToString().Trim();
                         data.USER_NAME = dr["USER_NAME"].ToString().Trim();
+                        data.USER_IMG = GetUserIMG(dr["USER_ID"].ToString().Trim());
                         data.MESSAGE = dr["MESSAGE"].ToString().Trim();
                         data.IMG = dr["IMG"].ToString().Trim();
                         data.VIDEO = "";//dr["USER_NAME"].ToString();
@@ -149,18 +151,20 @@ namespace PetManagement.Models
 
         public string GetUserIMG(string user_id) 
         {
-
+            string fileSavedPath = WebConfigurationManager.AppSettings["filePath"].ToString();//取得在專案中的路徑
+            string publicIMG = fileSavedPath + "public/user.jpg";
             string IMGpath = "";
-            string findSql = String.Format("SELECT top 1 IMG FROM USER_INFO" +
+            string findSql = String.Format("SELECT top 1 USER_IMG FROM USER_INFO" +
             " WHERE IS_USE=1 AND ID="+ user_id +
             " ORDER BY CRT_DT DESC");
             DataTable img = GetDataTable(findSql);
             if (img != null)
             {
-                IMGpath = img.Rows[0]["ID"].ToString().Trim();
+                IMGpath = img.Rows[0]["USER_IMG"].ToString().Trim();
             }
+            else { IMGpath = publicIMG; }
 
-            return IMGpath==null?"": IMGpath;
+            return (IMGpath==null|| IMGpath == "") ? publicIMG : IMGpath;
         }
 
     }

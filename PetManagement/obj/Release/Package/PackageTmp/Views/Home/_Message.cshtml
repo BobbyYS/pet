@@ -4,8 +4,25 @@
 
 <link href="~/Content/Message.css" rel="stylesheet" />
 
-<img class="avatar" src="~/file/public/user.jpg">
-<h4><b>@Model.USER_NAME</b></br><span style="font-size: 0.8em">@Model.CRT_DT</span></h4>
+<!--<img class="avatar" src="~/file/public/user.jpg">--> @*正式*@
+<img class="avatar" src="~/IPet/file/public/user.jpg"> @*測試*@
+<div style="display:inline;">
+    <h4><b>@Model.USER_NAME</b></br><span style="font-size: 0.8em">@Model.CRT_DT</span></h4>
+    @if (Session["userId"] != null)
+    {
+        if (Session["userId"].ToString() == Model.USER_ID) {
+        <div class="icon-trash">
+            <a onclick="deleteClick(@Model.ID)">
+                <div class="trash-lid" style="background-color: #C5BFB6"></div>
+                <div class="trash-container" style="background-color: #C5BFB6"></div>
+                <div class="trash-line-1"></div>
+                <div class="trash-line-2"></div>
+                <div class="trash-line-3"></div>
+            </a>
+        </div>
+        }
+    }
+</div>
 <p>
     @Model.MESSAGE
 </p>
@@ -13,21 +30,48 @@
 {
     <img src=@Model.IMG />
 }
-<p>
-    @*@Html.ActionLink("View 3 more comments", "FancyBox", "Home", null, new { @class = "fancybox fancybox.iframe" })*@
-    <a style="font-size: 0.7em; color: #428bca" href="#">View 3 more comments</a>
-</p>
-@*<img class="sm-avatar" src="http://lorempixel.com/64/64/people">
-    <h5>
-        Alec Nilsson
-        <span>
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-        </span>
-    </h5>*@
-@*<form action="#">
-        <div class="input-wrap">
-            <input type="text" name="name" id="name" placeholder="Add your comment" />
-        </div>
-    </form>*@
+<br />
+<hr />
 
+
+@*顯示留言*@
+<div class="collapse" id=@Model.ID>
+    @foreach (var item in Model.COMMAND_LIST)
+    {
+        if (@item.IMG != "" && @item.IMG != null)
+        {
+            <img class="sm-avatar" src=@item.IMG>
+        }
+        else
+        {
+            <img class="sm-avatar" src="~/IPet/file/public/user.jpg">
+        }
+        <h5>
+            @item.USER_NAME
+            <span>
+                @item.MESSAGE
+            </span>
+        </h5>
+    }
+
+</div>
+@*顯示更多留言*@
+<div id="moreDiv_@Model.ID">
+    @if (Model.COMMAND_LIST.Count() > 0)
+    {
+        <a id="more_@Model.ID" style="font-size: 0.7em; color: #428bca" data-toggle="collapse" href="#@Model.ID" aria-expanded="false" aria-controls="collapseExample">&nbsp;&nbsp; 更多留言...</a>
+    }
+</div>
+
+@*留言功能*@
+<form action="#" style="margin-bottom: 20px;">
+
+    @if (Session["userId"] != null && Session["userId"].ToString() != "")
+    {
+        <div class="input-wrap" style="display:inline;">
+            <input style="width:85%;" type="text" name="name" id="myComment_@Model.ID" placeholder="請留言" />
+            <button style="background-color:white; border:none;" type="button" onclick="SendCommand(@Model.ID,$('#myComment_'+@Model.ID).val());"><i class="fa fa-paper-plane"></i></button>
+        </div>
+    }
+</form>
 

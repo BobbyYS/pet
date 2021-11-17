@@ -5,8 +5,25 @@
 <link href="~/Content/Message.css" rel="stylesheet" />
 
 <!--<img class="avatar" src="~/file/public/user.jpg">--> @*正式*@
-<img class="avatar" src="~/IPet/file/public/user.jpg"> @*測試*@
-<h4><b>@Model.USER_NAME</b></br><span style="font-size: 0.8em">@Model.CRT_DT</span></h4>
+<!--<img class="avatar" src="~/IPet/file/public/user.jpg">--> @*測試*@
+<img class="avatar" src=@Model.USER_IMG>
+<div style="display:inline;">
+    <h4><b>@Model.USER_NAME</b></br><span style="font-size: 0.8em">@Model.CRT_DT</span></h4>
+    @if (Session["userId"] != null)
+    {
+        if (Session["userId"].ToString() == Model.USER_ID) {
+        <div class="icon-trash">
+            <a onclick="deleteClick(@Model.ID)">
+                <div class="trash-lid" style="background-color: #C5BFB6"></div>
+                <div class="trash-container" style="background-color: #C5BFB6"></div>
+                <div class="trash-line-1"></div>
+                <div class="trash-line-2"></div>
+                <div class="trash-line-3"></div>
+            </a>
+        </div>
+        }
+    }
+</div>
 <p>
     @Model.MESSAGE
 </p>
@@ -22,14 +39,7 @@
 <div class="collapse" id=@Model.ID>
     @foreach (var item in Model.COMMAND_LIST)
     {
-        if (@item.IMG != "" && @item.IMG != null)
-        {
-            <img class="sm-avatar" src=@item.IMG>
-        }
-        else
-        {
-            <img class="sm-avatar" src="~/IPet/file/public/user.jpg">
-        }
+        <img class="sm-avatar" src=@item.IMG>
         <h5>
             @item.USER_NAME
             <span>
@@ -43,14 +53,19 @@
 <div id="moreDiv_@Model.ID">
     @if (Model.COMMAND_LIST.Count() > 0)
     {
-        <a id="more_@Model.ID" style="font-size: 0.7em; color: #428bca" data-toggle="collapse" href="#@Model.ID" aria-expanded="false" aria-controls="collapseExample">更多留言...</a>
+        <a id="more_@Model.ID" style="font-size: 0.7em; color: #428bca" data-toggle="collapse" href="#@Model.ID" aria-expanded="false" aria-controls="collapseExample">&nbsp;&nbsp; 更多留言...</a>
     }
 </div>
 
 @*留言功能*@
-<form action="#">
-    <div class="input-wrap" style="display:inline; margin-bottom:5px;">
-        <input style="width:85%;" type="text" name="name" id="myComment_@Model.ID" placeholder="Add your comment" />
-        <button style="background-color:white; border:none;" type="button" onclick="SendCommand(@Model.ID,$('#myComment_'+@Model.ID).val());"><i class="fa fa-paper-plane"></i></button>
-    </div>
+<form action="#" style="margin-bottom: 20px;">
+
+    @if (Session["userId"] != null && Session["userId"].ToString() != "")
+    {
+        <div class="input-wrap" style="display:inline;">
+            <input style="width:85%;" type="text" name="name" id="myComment_@Model.ID" placeholder="請留言" />
+            <button style="background-color:white; border:none;" type="button" onclick="SendCommand(@Model.ID,$('#myComment_'+@Model.ID).val());"><i class="fa fa-paper-plane"></i></button>
+        </div>
+    }
 </form>
+

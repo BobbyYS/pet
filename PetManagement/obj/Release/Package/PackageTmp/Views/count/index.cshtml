@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "新手計算機";
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="text-align:center">
+    <h2>幼犬</h2>
+    <h3 style="font-size:12px;color:red">(以下費用皆為參考，實際費用可能依地區及品牌有所差異)</h3>
+
+
+
+
+
+
+    <form oninput="x.value = parseInt(a.value) + parseInt(b.value) + parseInt(c.value) + parseInt(d.value) + parseInt(e.value) + parseInt(f.value) + parseInt(g.value) + parseInt(h.value) + parseInt(i.value)">
+
+        <p style="font-size:25px"> 預估費用:<output style="font-size:25px;color:orange;background-color:ivory " name="x" for="a,b,c,d,e,f,g,h,i"></output></p>
+
+
+        <h4>推薦類:</h4>
+        <p>
+            晶片植入(300元)<select id="a">
+                <option value="0">否</option>
+                <option value="300">是</option>
+            </select>
+        </p>
+        <p>
+            絕育手術(5000元)(依體型/重量/性別而不同)<select id="b">
+                <option value="0">否</option>
+                <option value="5000">是</option>
+            </select>
+        </p>
+        <p>
+            寵物登記(已絕育)(500元)<select id="c">
+                <option value="0">否</option>
+                <option value="500">是</option>
+            </select>
+        </p>
+        <p>
+            寵物登記(未絕育)(1000元)<select id="d">
+                <option value="0">否</option>
+                <option value="1000">是</option>
+            </select>
+        </p>
+
+        <br />
+
+        <h4>醫療類:</h4>
+        <p>
+            第一劑(6-8周):
+            <select id="e">
+                <option value="0"></option>
+                <option value="500">犬五合一疫苗</option>
+                <option value="700">犬七合一疫苗</option>
+                <option value="800">犬八合一疫苗</option>
+                <option value="1000">犬十合一疫苗</option>
+            </select>
+        </p>
+        <p>
+            第二劑(10-12周):
+            <select id="f">
+                <option value="0"></option>
+                <option value="500">犬五合一疫苗</option>
+                <option value="700">犬七合一疫苗</option>
+                <option value="800">犬八合一疫苗</option>
+                <option value="1000">犬十合一疫苗</option>
+            </select>
+        </p>
+        <p>
+            第三劑(14-16周):
+            <select id="g">
+                <option value="0"></option>
+                <option value="500">犬五合一疫苗</option>
+                <option value="700">犬七合一疫苗</option>
+                <option value="800">犬八合一疫苗</option>
+                <option value="1000">犬十合一疫苗</option>
+            </select>
+        </p>
+        <p>
+            狂犬病疫苗(300元)<select id="h">
+                <option value="0">否</option>
+                <option value="300">是</option>
+            </select>
+        </p>
+        <p>
+            幼犬健檢(2000元)<select id="i">
+                <option value="0">否</option>
+                <option value="2000">是</option>
+            </select>
+        </p>
+
+    </form>
+</div>

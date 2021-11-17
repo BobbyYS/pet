@@ -15,20 +15,24 @@ namespace PetManagement.Controllers
     public class HomeController : Controller
     {
         Data data = new Data();
+        public ActionResult Home()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
-            //Session["userId"] = 7;
-            //Session["userName"] = "陳怡融";
             List<Message> messageList = data.MessageData();
             return View(messageList);
         }
 
-        public ActionResult _Message(string id,string user_id, string name, DateTime time, string message, string img, List<Command> commandList)
+        public ActionResult _Message(string id,string user_id,string user_img, string name, DateTime time, string message, string img, List<Command> commandList)
         {
             Message messageInf = new Message();
             messageInf.ID = id;
             messageInf.USER_ID = user_id;
             messageInf.USER_NAME = name;
+            messageInf.USER_IMG = user_img;
             messageInf.CRT_DT = time;
             messageInf.MESSAGE = message;
             messageInf.IMG = img;
@@ -70,6 +74,19 @@ namespace PetManagement.Controllers
             return user_IMG;
 
         }
+
+        #region 刪除評論
+        public ActionResult MessageDelete(int Id)
+        {
+            bool Success = false;
+            Success = data.ExecChangeData("DELETE FROM FORUM "
+               + " WHERE ID = '" + Id + "' ");
+            Success = data.ExecChangeData("DELETE FROM FORUM "
+               + " WHERE UP_ID = '" + Id + "' ");
+
+            return Json(Success, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
 
         /// <summary>
         /// 檔案上傳

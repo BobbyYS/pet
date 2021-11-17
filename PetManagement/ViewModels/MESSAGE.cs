@@ -13,6 +13,7 @@ namespace PetManagement.ViewModels
             public string ID { get; set; }
             public string USER_ID { get; set; }
             public string USER_NAME { get; set; }
+            public string USER_IMG { get; set; }
             public string MESSAGE { get; set; }
             public string IMG { get; set; }
             public string VIDEO { get; set; }
@@ -28,7 +29,6 @@ namespace PetManagement.ViewModels
             public string IMG { get; set; }
             public string USER_NAME { get; set; }
             public string MESSAGE { get; set; }
-
         }
     }
 }

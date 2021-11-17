@@ -48,7 +48,7 @@
     width: calc(8.33333%*12);
 }
 
-.row {
+/*.row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -59,7 +59,7 @@
         box-sizing: border-box;
         margin: 0 0;
         padding: 1em;
-    }
+    }*/
 
 /* Grid Ends */
 html {
@@ -171,8 +171,8 @@ a {
 
     .box i {
         font-size: 1.5em;
-        transform: rotate(90deg);
-    }
+/*        transform: rotate(90deg);
+*/    }
 
     .box p, .box h4 {
         padding: 1em;
@@ -211,7 +211,7 @@ a {
     }
 
     .box .sm-avatar {
-        width: 30px;
+        width: 40px;
     }
 
     .box img {
@@ -354,7 +354,13 @@ input {
 }
 
 inputCommand {
+    border: none;
 }
+
+    inputCommand:focus {
+        border: none;
+    }
+
 
 
 fieldset {
@@ -370,56 +376,6 @@ fieldset {
 textarea:hover, input[type="text"]:hover {
     border: 1px solid #2791c6;
 }
-
-.sidebar {
-    background-color: #ededed;
-}
-
-    .sidebar .arrow-right {
-        background-color: lightgray;
-        position: relative;
-        padding: 10px;
-        top: -12px;
-        left: -10px;
-    }
-
-    .sidebar h3 {
-        padding-top: 20px;
-        font-family: "Poppins", Helvetica, sans-serif;
-        letter-spacing: 0.5px;
-    }
-
-    .sidebar > i {
-        font-size: .7em;
-    }
-
-    .sidebar > article {
-        border-bottom: solid 1px #e4e4e4;
-        padding: 1em;
-    }
-
-        .sidebar > article ul {
-            list-style: none;
-            padding: 0;
-        }
-
-    .sidebar .avatar > li {
-        display: inline;
-    }
-
-    .sidebar a {
-        font-size: .9em;
-    }
-
-        .sidebar a:hover img {
-            opacity: 0.5;
-        }
-
-    .sidebar i {
-        font-size: 2em;
-        color: #656c7e;
-        padding-right: 20px;
-    }
 
 .grid-preview {
     padding: 0;
@@ -491,3 +447,99 @@ textarea:hover, input[type="text"]:hover {
 }
 /* 上傳圖片區 end*/
 
+/*垃圾桶*/
+.icon-trash {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    overflow: hidden;
+    margin-left: 90%;
+}
+
+    .icon-trash .trash-lid {
+        width: 62%;
+        height: 10%;
+        position: absolute;
+        left: 50%;
+        margin-left: -31%;
+        top: 10.5%;
+        background-color: #000;
+        border-top-left-radius: 80%;
+        border-top-right-radius: 80%;
+        -webkit-transform: rotate(-5deg);
+        -moz-transform: rotate(-5deg);
+        -ms-transform: rotate(-5deg);
+        transform: rotate(-5deg);
+    }
+
+        .icon-trash .trash-lid:after {
+            content: "";
+            width: 26%;
+            height: 100%;
+            position: absolute;
+            left: 50%;
+            margin-left: -13%;
+            margin-top: -10%;
+            background-color: inherit;
+            border-top-left-radius: 30%;
+            border-top-right-radius: 30%;
+            -webkit-transform: rotate(-1deg);
+            -moz-transform: rotate(-1deg);
+            -ms-transform: rotate(-1deg);
+            transform: rotate(-1deg);
+        }
+
+    .icon-trash .trash-container {
+        width: 56%;
+        height: 65%;
+        position: absolute;
+        left: 50%;
+        margin-left: -28%;
+        bottom: 10%;
+        background-color: #000;
+        border-bottom-left-radius: 15%;
+        border-bottom-right-radius: 15%;
+    }
+
+        .icon-trash .trash-container:after {
+            content: "";
+            width: 110%;
+            height: 12%;
+            position: absolute;
+            left: 50%;
+            margin-left: -55%;
+            top: 0;
+            background-color: inherit;
+            border-bottom-left-radius: 45%;
+            border-bottom-right-radius: 45%;
+        }
+
+    .icon-trash .trash-line-1 {
+        width: 4%;
+        height: 50%;
+        position: absolute;
+        left: 38%;
+        margin-left: -2%;
+        bottom: 17%;
+        background-color: #252527;
+    }
+
+    .icon-trash .trash-line-2 {
+        width: 4%;
+        height: 50%;
+        position: absolute;
+        left: 50%;
+        margin-left: -2%;
+        bottom: 17%;
+        background-color: #252527;
+    }
+
+    .icon-trash .trash-line-3 {
+        width: 4%;
+        height: 50%;
+        position: absolute;
+        left: 62%;
+        margin-left: -2%;
+        bottom: 17%;
+        background-color: #252527;
+    }
