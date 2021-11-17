@@ -22,6 +22,7 @@ namespace PetManagement.ViewModels
         [Display(Name = "性別")]
         public string SEX { get; set; }
         public string USER_IMG { get; set; }
+        public HttpPostedFileBase FILE_IMG { get; set; }
         public System.DateTime CRT_DT { get; set; }
         public Nullable<System.DateTime> MDF_DT { get; set; }
         public bool IS_USE { get; set; }

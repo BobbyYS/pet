@@ -9,7 +9,7 @@
 <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 <link href="~/Content/OwnerStyle.css" rel="stylesheet" />
 
-@using (Html.BeginForm("Owner", "UserInfo", FormMethod.Post, new { @id = "formOwner" }))
+@using (Html.BeginForm("Owner", "UserInfo", FormMethod.Post, new { @id = "formOwner", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -22,7 +22,8 @@
             <img src="" alt="Profile picture preview" class="imagePreview">
             <img id="imgOriginal" style="display:none;" src="~/Images/profile.jpg" />
             <button type="button" class="action-button mode-upload">上傳相片</button>
-            <input type="file" class="hidden" name="fileInput" id="fileUploader" />
+            @Html.TextBoxFor(m => m.FILE_IMG, new { @class = "hidden", @type = "file" })
+            @*<input type="file" class="hidden" name="fileInput" id="fileUploader" />*@
         </div>
 
         @*姓名*@
@@ -88,15 +89,17 @@
 }
 
 <script type="text/javascript">
+    debugger;
     let picturePreview = document.querySelector(".imagePreview");
     let pictureOriginal = document.getElementById("imgOriginal");
     let actionButton = document.querySelector(".action-button");
-    let fileInput = document.querySelector("input[name='fileInput']");
+    let fileInput = document.querySelector("input[name='FILE_IMG']");
     let fileReader = new FileReader();
 
     const DEFAULT_IMAGE_SRC = pictureOriginal.src;
 
     actionButton.addEventListener("click", () => {
+        debugger;
         if (picturePreview.src !== DEFAULT_IMAGE_SRC) {
             resetImage();
         } else {
@@ -105,16 +108,19 @@
     });
 
     fileInput.addEventListener("change", () => {
+        debugger;
         refreshImagePreview();
     });
 
     function resetImage() {
+        debugger;
         setActionButtonMode("upload");
         picturePreview.src = DEFAULT_IMAGE_SRC;
         fileInput.value = "";
     }
 
     function setActionButtonMode(mode) {
+        debugger;
         let modes = {
             upload: function () {
                 actionButton.innerText = "上傳相片";
@@ -131,10 +137,13 @@
     }
 
     function refreshImagePreview() {
+        debugger;
         if (picturePreview.src !== DEFAULT_IMAGE_SRC) {
+            debugger;
             picturePreview.src = DEFAULT_IMAGE_SRC;
         } else {
             if (fileInput.files && fileInput.files.length > 0) {
+                debugger;
                 fileReader.readAsDataURL(fileInput.files[0]);
                 fileReader.onload = (e) => {
                     picturePreview.src = e.target.result;
@@ -143,6 +152,7 @@
             }
         }
     }
+
 
     refreshImagePreview();
 
