@@ -24,5 +24,6 @@ namespace PetManagement.ViewModels
         public DateTime? MDF_DT { get; set; }
         public bool IS_USE { get; set; }
         public string IMG { get; set; }
+        public HttpPostedFileBase FILE_IMG { get; set; }
     }
 }

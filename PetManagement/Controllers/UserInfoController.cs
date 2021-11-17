@@ -39,7 +39,8 @@ namespace PetManagement.Controllers
                 petInfos.Add(new PETINFO
                 {
                     ID = Convert.ToInt32(row[0]),
-                    PET_NAME = row[2].ToString().Trim()
+                    PET_NAME = row[2].ToString().Trim(),
+                    IMG = row[9].ToString().Trim()
                 });
             }
             userinfo.petinfoList = petInfos;
@@ -71,13 +72,19 @@ namespace PetManagement.Controllers
             bool Success = false;
             string userId = Session["userId"] as string;
 
-            Success = data.ExecChangeData("UPDATE USER_INFO SET "
+            Tuple<bool, string> fileUplodResult = new Tuple<bool, string>(true, "");
+            if (userInfo.FILE_IMG != null) { fileUplodResult = FileUplod(userInfo.FILE_IMG); }
+            if (fileUplodResult.Item1)
+            {
+                Success = data.ExecChangeData("UPDATE USER_INFO SET "
                 + " USER_NAME = '" + userInfo.USER_NAME + "', "
                 + " TEL = '" + userInfo.TEL + "', "
                 + " ADDR = '" + userInfo.ADDR + "', "
                 + " SEX = '" + userInfo.SEX + "', "
+                + " USER_IMG = '" + fileUplodResult.Item2 + "', "
                 + " MDF_DT = '" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "' "
                 + " WHERE ID = '" + userId + "' ");
+            }
 
             if (Success)
             {
@@ -124,10 +131,14 @@ namespace PetManagement.Controllers
             bool Success = false;
             string userId = Session["userId"] as string;
             ViewBag.DDLKIND = DDLPetType();
-            Success = data.ExecChangeData("INSERT INTO PET_INFO (OWNER_ID,PET_NAME,KIND,BIRTHDAY,SEX,CRT_DT,IS_USE)"
+            Tuple<bool, string> fileUplodResult = new Tuple<bool, string>(true, "");
+            if (petInfo.FILE_IMG != null) { fileUplodResult = FileUplod(petInfo.FILE_IMG); }
+            if (fileUplodResult.Item1)
+            {
+                Success = data.ExecChangeData("INSERT INTO PET_INFO (OWNER_ID,PET_NAME,KIND,BIRTHDAY,SEX,IMG,CRT_DT,IS_USE)"
                         + " VALUES('" + userId + "','" + petInfo.PET_NAME + "','"
-                        + petInfo.KIND + "','" + petInfo.BIRTHDAY.Value.ToString("yyyy/MM/dd HH:mm:ss") + "','" + petInfo.SEX + "','" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "','1')");
-
+                        + petInfo.KIND + "','" + petInfo.BIRTHDAY.Value.ToString("yyyy/MM/dd HH:mm:ss") + "','" + petInfo.SEX + "','" + fileUplodResult.Item2 + "', '" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "','1')");
+            }
             TempData["PetCreate"] = Success;
             return PartialView();
         }
@@ -144,7 +155,8 @@ namespace PetManagement.Controllers
                 PET_NAME = dr[2].ToString().Trim(),
                 KIND = dr[3].ToString(),
                 BIRTHDAY = Convert.ToDateTime(dr[4]),
-                SEX = dr[5].ToString()
+                SEX = dr[5].ToString(),
+                IMG = dr[9].ToString()
             };
 
             return PartialView(petInfo);
@@ -155,14 +167,19 @@ namespace PetManagement.Controllers
         {
             ViewBag.DDLKIND = DDLPetType();
             bool Success = false;
-            Success = data.ExecChangeData("UPDATE PET_INFO SET "
+            Tuple<bool, string> fileUplodResult = new Tuple<bool, string>(true, "");
+            if (petInfo.FILE_IMG != null) { fileUplodResult = FileUplod(petInfo.FILE_IMG); }
+            if (fileUplodResult.Item1)
+            {
+                Success = data.ExecChangeData("UPDATE PET_INFO SET "
                + " PET_NAME = '" + petInfo.PET_NAME + "', "
                + " KIND = '" + petInfo.KIND + "', "
                + " BIRTHDAY = '" + petInfo.BIRTHDAY.Value.ToString("yyyy/MM/dd HH:mm:ss") + "', "
                + " SEX = '" + petInfo.SEX + "', "
+               + " IMG = '" + fileUplodResult.Item2 + "', "
                + " MDF_DT = '" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "' "
                + " WHERE ID = '" + Id + "' ");
-
+            }
             TempData["PetModify"] = Success;
             return PartialView();
         }
@@ -194,7 +211,7 @@ namespace PetManagement.Controllers
             try
             {
                 //判斷是否有上傳檔案
-                if (Request.Files["file"].ContentLength > 0)
+                if (Request.Files["FILE_IMG"].ContentLength > 0)
                 {
                     string extension = Path.GetExtension(file.FileName);
                     string fileSavedPath = WebConfigurationManager.AppSettings["filePath"].ToString();//取得在專案中的路徑
@@ -206,14 +223,13 @@ namespace PetManagement.Controllers
                         string newFileName = string.Concat(
                         DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"),
                         Path.GetExtension(file.FileName).ToLower());
-                        string fullFilePath = Path.Combine(Server.MapPath(fileSavedPath).Replace("Home\\", ""), newFileName);
+                        string fullFilePath = Path.Combine(Server.MapPath(fileSavedPath).Replace("UserInfo\\", "").Replace("PetModify\\", ""), newFileName);
 
                         // 存放檔案到伺服器上
-                        Request.Files["file"].SaveAs(fullFilePath);
+                        Request.Files["FILE_IMG"].SaveAs(fullFilePath);
 
                         //寫入要回傳的路徑
                         rtnFilePath = "/" + fileSavedPath + newFileName;
-                        Response.Write("<script language=javascript>alert(' 檔案上傳成功 ');</" + "script>");
                     }
                     else
                     {
