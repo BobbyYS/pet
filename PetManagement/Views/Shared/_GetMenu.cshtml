@@ -28,6 +28,7 @@ else
         <div class="row">
             <div class="col-md-12 sliderMarginTop" id="iconGift">
                 <img src="~/Images/Header/icon/qa.png" class="sliderIcon" />
+                <div class="sliderTitle"><a href="@Url.Action("index", "QA")"> <p class="card-text">QA區</p></a></div>
                 <div class="sliderTitle">  <a href="@Url.Action("Index", "QA")"> <p class="card-text">QA區</p></a></div>
             </div>
         </div>
@@ -45,6 +46,16 @@ else
                     <div class="sliderTitle"><a href="@Url.Action("Index", "UserInfo")"><p class="card-text ccText">會員資料</p></a></div>
                 </div>
             </div>
+            if (ViewBag.Administrator == "True")
+            {
+                <div class="row">
+                    <div class="col-md-12 sliderMarginTop" id="iconAuth">
+                        <img src="~/Images/Header/icon/control.png" class="sliderIcon" />
+                        <div class="sliderTitle"><a href=""><p class="card-text ccText">系統管理</p></a></div>
+                    </div>
+                </div>
+            }
         }
+
     </div>
 }

@@ -70,6 +70,13 @@
                 <li><a href="@Url.Action("Index", "kcal")"><img src="~/Images/triangle.png" class="triangle" />卡路里計算機</a></li>
             </ul>
         </div>
+        <div class="slideNav" id="navAuth">
+            <ul class="ulMarginTop">
+                <li><a href="@Url.Action("UserManagement", "Backend")"><img src="~/Images/triangle.png" class="triangle" />會員管理</a></li>
+                <li><a href="@Url.Action("", "")"><img src="~/Images/triangle.png" class="triangle" />公告管理</a></li>
+                <li><a href="@Url.Action("", "")"><img src="~/Images/triangle.png" class="triangle" />貼文管理</a></li>
+            </ul>
+        </div>
     </section>
     <section id="Content" class="container-fluid pageBorder">
         @RenderBody()
