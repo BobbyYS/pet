@@ -161,6 +161,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MESSAGE.cs" />
     <Compile Include="ViewModels\PETINFO.cs" />
+    <Compile Include="ViewModels\SYSINFO.cs" />
     <Compile Include="ViewModels\USERINFO.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +334,7 @@
     <Content Include="Views\Map\Hospital.cshtml" />
     <Content Include="Views\Map\_Park.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Home\_EditMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

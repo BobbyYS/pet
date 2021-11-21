@@ -1,0 +1,66 @@
+﻿@model PetManagement.ViewModels.MESSAGE.EditMessage
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<link href="~/Content/windowAlert.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/Message.css" rel="stylesheet" />
+
+<h2><b>編輯留言</b></h2>
+<hr />
+
+@*內容*@
+<div class="row form-group" style="width:100%;">
+    <label class="col-md-1">@Html.LabelFor(m => Model.MESSAGE, new { @class = "control-label" })</label>
+    <div class="col-md-3">
+        @Html.TextBoxFor(m => m.MESSAGE, new { @class = "form-control required" })
+        @Html.ValidationMessageFor(m => m.MESSAGE, "", new { @class = "text-danger", @style = "color:red" })
+    </div>
+</div>
+<input type="file" id="fileUploader" style="border:none;" />
+<input type="button" id="Send" value="送出" onclick="SaveCommand()" style="font-size:16px; width: 70px; height: 37px; margin-top:10px;" class="okButton" />
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/windowAlert.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+
+
+<script type="text/javascript" defer>
+
+    function SaveCommand() {
+        if ($("#MESSAGE").val().trim() === "") {
+            swal(
+                '提示',
+                '評論不可空白',
+                'info'
+            ).then(function () {
+                location.href = location.href;
+            })
+        }
+        else {
+            var formData = new FormData();
+            formData.append("file", document.getElementById("fileUploader").files[0]);
+            formData.append('id', @Model.ID.ToString())
+            formData.append('comment', $("#MESSAGE").val())
+
+            $.ajax({
+                url: "@(Url.Action("EditMessage", "Home"))",
+                type: "POST",
+                data: formData,
+                contentType: false, //required
+                processData: false, // required
+                success: function (data) {
+                    swal(
+                        '完成',
+                        '修改成功！',
+                        'success'
+                    ).then(function () {
+                        window.location = "@(Url.Action("Index", "Home"))";
+                    })
+                }
+            });
+        }
+    }
+</script>

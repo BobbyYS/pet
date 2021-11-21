@@ -9,7 +9,7 @@ namespace 專案.Controllers
     public class QAController : Controller
     {
         // GET: QA
-        public ActionResult QA()
+        public ActionResult Index()
         {
             return View();
         }

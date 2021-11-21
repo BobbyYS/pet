@@ -11,16 +11,12 @@
     <h4><b>@Model.USER_NAME</b></br><span style="font-size: 0.8em">@Model.CRT_DT</span></h4>
     @if (Session["userId"] != null)
     {
-        if (Session["userId"].ToString() == Model.USER_ID) {
-        <div class="icon-trash">
-            <a onclick="deleteClick(@Model.ID)">
-                <div class="trash-lid" style="background-color: #C5BFB6"></div>
-                <div class="trash-container" style="background-color: #C5BFB6"></div>
-                <div class="trash-line-1"></div>
-                <div class="trash-line-2"></div>
-                <div class="trash-line-3"></div>
+        if (Session["userId"].ToString() == Model.USER_ID)
+        {
+            <a data-fancybox="gallery" class="fancybox" data-type="iframe" style="color: #D3D3D3; " href="@Url.Action("_EditMessage", "Home", new { Id = Model.ID })">
+                <i class="fa fa-pencil"></i>
             </a>
-        </div>
+            <button style="background-color: white; border: none; color: #ed2553;" type="button" onclick="deleteClick(@Model.ID);"><i class="fa fa-trash"></i></button>
         }
     }
 </div>
@@ -64,7 +60,7 @@
     {
         <div class="input-wrap" style="display:inline;">
             <input style="width:85%;" type="text" name="name" id="myComment_@Model.ID" placeholder="請留言" />
-            <button style="background-color:white; border:none;" type="button" onclick="SendCommand(@Model.ID,$('#myComment_'+@Model.ID).val());"><i class="fa fa-paper-plane"></i></button>
+            <button style="background-color: white; border: none; color: #428bca; " type="button" onclick="SendCommand(@Model.ID,$('#myComment_'+@Model.ID).val());"><i class="fa fa-paper-plane"></i></button>
         </div>
     }
 </form>
