@@ -9,6 +9,7 @@ using PetManagement.Models;
 using System.Web.Configuration;
 using System.IO;
 using System.Configuration;
+using static PetManagement.ViewModels.SYSINFO;
 
 namespace PetManagement.Controllers
 {
@@ -17,7 +18,15 @@ namespace PetManagement.Controllers
         Data data = new Data();
         public ActionResult Home()
         {
-            return View();
+            List<Parameter>info= data.GetParameter("Announce");
+            Announce announce = new Announce();
+            if (info.FirstOrDefault().VALUE != null)
+            {
+                announce.INFO = info.FirstOrDefault().VALUE;
+            }
+            else { announce.INFO = ""; }
+
+            return View(announce);
         }
 
         public ActionResult Index()
@@ -40,13 +49,13 @@ namespace PetManagement.Controllers
             return PartialView(messageInf);
         }
 
-        public ActionResult Contact()
+        public ActionResult _EditMessage(string Id)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            EditMessage messageInfo = data.GetMessage(Id);
+            return PartialView(messageInfo);
         }
 
+        #region 新增評論
         /// <summary>
         /// 新增評論
         /// </summary>
@@ -74,6 +83,39 @@ namespace PetManagement.Controllers
             return user_IMG;
 
         }
+        #endregion
+
+        #region 修改評論
+        /// <summary>
+        /// 修改評論
+        /// </summary>
+        /// <param name="user">使用者</param>
+        /// <param name="comment">評論</param>
+        /// <returns></returns>
+        public string EditMessage(HttpPostedFileBase file,string id, string comment)
+        {
+            bool Success = false;
+            string user_IMG="";
+            Tuple<bool, string> fileUplodResult = new Tuple<bool, string>(true,"");
+
+            Success = data.ExecChangeData("UPDATE FORUM SET MESSAGE='" + comment + 
+                "',MDF_DT='"+ DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "' WHERE ID='" + id + "'");
+
+            if (file != null) { 
+                fileUplodResult = FileUplod(file);
+                if (fileUplodResult.Item1)
+                {
+                    Success = data.ExecChangeData("UPDATE FORUM SET IMG='" + fileUplodResult.Item2 + "',MDF_DT='" 
+                        + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "' WHERE ID='" + id + "'");
+                }
+            }
+            else {
+                Response.Write("<script language=javascript>alert(' 檔案上傳失敗，請洽系統管理員 ');</" + "script>");
+            }
+            return user_IMG;
+
+        }
+        #endregion
 
         #region 刪除評論
         public ActionResult MessageDelete(int Id)

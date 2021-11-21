@@ -30,5 +30,15 @@ namespace PetManagement.ViewModels
             public string USER_NAME { get; set; }
             public string MESSAGE { get; set; }
         }
+
+        public class EditMessage {
+            public string ID { get; set; }
+            public string USER_ID { get; set; }
+            [Required(ErrorMessage = "*留言為必填")]
+            [Display(Name = "留言:")]
+            public string MESSAGE { get; set; }
+            public string IMG { get; set; }
+            public DateTime MDF_DT { get; set; }
+        }
     }
 }

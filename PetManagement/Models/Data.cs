@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetManagement.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -6,7 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using static PetManagement.ViewModels.MESSAGE;
- 
+using static PetManagement.ViewModels.SYSINFO;
+
 namespace PetManagement.Models
 {
     public class Data
@@ -90,6 +92,7 @@ namespace PetManagement.Models
             }
         }
 
+    # region 取得主題及留言資料
         /// <summary>
         /// 取得主題及留言資料(LIST)
         /// </summary>
@@ -147,8 +150,14 @@ namespace PetManagement.Models
             return dataList;
 
         }
+        #endregion
 
-
+        #region 取得使用者照片
+        /// <summary>
+        /// 取得使用者照片
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <returns></returns>
         public string GetUserIMG(string user_id) 
         {
             string fileSavedPath = WebConfigurationManager.AppSettings["filePath"].ToString();//取得在專案中的路徑
@@ -165,6 +174,50 @@ namespace PetManagement.Models
             else { IMGpath = publicIMG; }
 
             return (IMGpath==null|| IMGpath == "") ? publicIMG : IMGpath;
+        }
+        #endregion
+
+        #region 取得論壇留言(修改用)
+        /// <summary>
+        /// 取得論壇留言(修改用)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public EditMessage GetMessage(string id) {
+            DataTable result = GetDataTable("SELECT * FROM FORUM WHERE ID = '" + id + "'");
+            EditMessage message = new EditMessage();
+            if (result != null)
+            {
+                message.ID = result.Rows[0]["ID"].ToString().Trim();
+                message.MESSAGE= result.Rows[0]["MESSAGE"].ToString().Trim();
+            }
+
+            return message;
+        }
+        #endregion
+
+        /// <summary>
+        /// 取得參數
+        /// </summary>
+        /// <param name="type">參數名稱</param>
+        /// <returns></returns>
+        public List<Parameter> GetParameter(string type)
+        {
+            DataTable result = GetDataTable("SELECT * FROM PARAMETER WHERE TYPE = '"+ type+"'");
+            List<Parameter> strReturn = new List<Parameter>();
+            if (result != null)
+            {
+                foreach (DataRow dr in result.Rows) 
+                {
+                    Parameter parameter = new Parameter();
+                    parameter.VALUE = dr["VALUE"].ToString().Trim();
+                    parameter.NAME = dr["VALUE_NAME"].ToString().Trim();
+                    strReturn.Add(parameter);
+                }
+            }
+
+
+            return strReturn;
         }
 
     }

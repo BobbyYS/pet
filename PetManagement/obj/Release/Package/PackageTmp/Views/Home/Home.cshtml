@@ -1,20 +1,30 @@
-﻿@{
+﻿@model PetManagement.ViewModels.SYSINFO.Announce
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <style>
     h1 {
-        font-family: 'Dancing Script', cursive;
-        font-size: 80px;
-        margin-bottom: 30px;
+        font-size: 70px;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+        color: #ed2553;
+        letter-spacing: 5px;
+        text-shadow: -1px -1px 0px #ffffff, 3px 3px 0px #ffffff, 6px 6px 0px #cccccc;
     }
+
 </style>
-    <body style="background-image: url('../../Images/Home.jpg');" >
-        <h1>I PET</h1>
-    </body>
+<body style="background-image: url('../../Images/Home.jpg');">
+    <h1>I PET</h1>
+    <div style="border: 2px #ed2553 solid; background-color: white; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5%; ">
+        <h2 style="font-size:40px"><b>公告</b></h2>
+        @Html.Raw(Model.INFO)
+        <p></p>
+    </div>
+</body>
 
 
-    <script type="text/javascript" >
+<script type="text/javascript">
     //(function () {
     //    var $body, $code_pre, $script_area, $style_elem, createElement, getURLParam, openComment, openInteger, openString, prevAsterisk, prevSlash, scriptSyntax, styleSyntax, writeChar, writeChars, __js, _body_selection, _code_block, _code_pre, _codes, _colors, _cousin_id, _current_code, _gutter, _pen_id, _script_area, _style_elem, _throttle, _version, _writing_rate;
 
@@ -294,4 +304,4 @@
 
     //}
     //).call(this);
-    </script >
+</script>

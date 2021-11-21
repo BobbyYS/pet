@@ -169,6 +169,7 @@
     <Compile Include="ViewModels\BACKENDLIST.cs" />
     <Compile Include="ViewModels\MESSAGE.cs" />
     <Compile Include="ViewModels\PETINFO.cs" />
+    <Compile Include="ViewModels\SYSINFO.cs" />
     <Compile Include="ViewModels\USERINFO.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -345,6 +346,13 @@
     <Content Include="Views\Backend\UserManagement.cshtml" />
     <Content Include="Views\Backend\UserModify.cshtml" />
     <Content Include="Views\Backend\PetModify.cshtml" />
+    <Content Include="Views\QA\index.cshtml" />
+    <Content Include="Views\Map\Park.cshtml" />
+    <Content Include="Views\Map\Salon.cshtml" />
+    <Content Include="Views\Map\Hospital.cshtml" />
+    <Content Include="Views\Map\_Park.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Home\_EditMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
