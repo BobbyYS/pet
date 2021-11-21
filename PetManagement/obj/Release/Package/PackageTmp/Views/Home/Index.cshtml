@@ -25,7 +25,7 @@
 {
     <div class="box">
         @{
-            Html.RenderAction("_Message", new {id=item.ID, user_id = item.USER_ID, name = item.USER_NAME, time = item.CRT_DT, message = item.MESSAGE, img = item.IMG, commandList=item.COMMAND_LIST });
+            Html.RenderAction("_Message", new {id=item.ID, user_id = item.USER_ID, user_img=item.USER_IMG, name = item.USER_NAME, time = item.CRT_DT, message = item.MESSAGE, img = item.IMG, commandList=item.COMMAND_LIST });
         }
     </div>
 }

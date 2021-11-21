@@ -103,6 +103,7 @@ namespace PetManagement.Controllers
                 {
                     string extension = Path.GetExtension(file.FileName);
                     string fileSavedPath = WebConfigurationManager.AppSettings["filePath"].ToString();//取得在專案中的路徑
+                    string startfileSavedPath = WebConfigurationManager.AppSettings["startPath"].ToString();//取得在專案中的起始路徑
                     
                     //判斷是否為圖檔
                     if (extension == ".jpg" || extension == ".png" || extension == ".tif" || extension == ".jpeg")
@@ -117,7 +118,7 @@ namespace PetManagement.Controllers
                         Request.Files["file"].SaveAs(fullFilePath);
 
                         //寫入要回傳的路徑
-                        rtnFilePath = "/"+fileSavedPath+ newFileName;
+                        rtnFilePath = startfileSavedPath + fileSavedPath+ newFileName;
                         Response.Write("<script language=javascript>alert(' 檔案上傳成功 ');</" +"script>");
                     }
                     else

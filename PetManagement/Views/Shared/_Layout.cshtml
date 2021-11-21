@@ -41,7 +41,7 @@
             </div>
             <div id="title">
                 <div class="sysTitle">
-                    <a href="@Url.Action("Index", "Home")">iPet</a>
+                    <a href="@Url.Action("Home", "Home")">iPet</a>
                 </div>
             </div>
             @{
@@ -59,9 +59,15 @@
         </div>
         <div class="slideNav" id="navPromotion">
             <ul class="ulMarginTop">
-                <li><a href="@Url.Action("", "", new { area = "" })"><img src="~/Images/triangle.png" class="triangle" />地圖A</a></li>
-                <li><a href="@Url.Action("", "", new { area = "" })"><img src="~/Images/triangle.png" class="triangle" />地圖B</a></li>
-                <li><a href="@Url.Action("", "", new { area = "" })"><img src="~/Images/triangle.png" class="triangle" />地圖C</a></li>
+                <li><a href="@Url.Action("Park", "Map")"><img src="~/Images/triangle.png" class="triangle" />公園</a></li>
+                <li><a href="@Url.Action("Salon", "Map")"><img src="~/Images/triangle.png" class="triangle" />寵物美容</a></li>
+                <li><a href="@Url.Action("Hospital","Map")"><img src="~/Images/triangle.png" class="triangle" />寵物醫院</a></li>
+            </ul>
+        </div>
+        <div class="slideNav" id="navBank">
+            <ul class="ulMarginTop">
+                <li><a href="@Url.Action("Index", "count")"><img src="~/Images/triangle.png" class="triangle" />幼犬計算機</a></li>
+                <li><a href="@Url.Action("Index", "kcal")"><img src="~/Images/triangle.png" class="triangle" />卡路里計算機</a></li>
             </ul>
         </div>
     </section>
