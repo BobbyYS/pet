@@ -1,0 +1,233 @@
+﻿@model PetManagement.ViewModels.BACKENDLIST.USERINFOLIST
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "UserManagement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    IEnumerable<PetManagement.ViewModels.PETINFO> List2 = ViewBag.List2;
+}
+
+<style>
+    .ruleDiv {
+    }
+
+        .ruleDiv table {
+            width: 95%;
+            margin-left: 5%;
+        }
+
+            .ruleDiv table tr {
+                border: 0;
+            }
+
+                .ruleDiv table tr th {
+                    padding: 8px;
+                }
+
+                .ruleDiv table tr td {
+                    padding: 8px;
+                }
+</style>
+
+<h2><b>會員管理</b></h2>
+<hr />
+@using (Html.BeginForm("UserManagement", "Backend", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "UserList" }))
+{
+    <div class="row">
+        <div class="col-md-2 ">
+            <label class="">姓名</label>
+            @Html.TextBoxFor(x => x.SearchParameter.UserName, new { @class = new { @class = "form-control" } })
+        </div>
+        <div class="col-md-2 ">
+            <label class="">Email</label>
+            @Html.TextBoxFor(x => x.SearchParameter.Email, new { @class = new { @class = "form-control" } })
+        </div>
+        <div class="col-md-2 ">
+            <label class="">電話</label>
+            @Html.TextBoxFor(x => x.SearchParameter.Tel, new { @class = new { @class = "form-control" } })
+        </div>
+        <div class="col-md-4">
+            <br>
+            <button type="submit" class="btn btn-outline-secondary">
+                <i class="fa fa-search"></i> 查詢
+            </button>
+        </div>
+    </div>
+}
+<div class="row">
+    @Html.PagedListPager(Model.Users, page => Url.Action("UserManagement", new { page }))
+</div>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>電話</th>
+                <th>Email</th>
+                <th style="max-width:100px">維護</th>
+                <th></th>
+            </tr>
+        </thead>
+        @if (Model.Users.Count() != 0)
+        {
+            foreach (var item in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.USER_NAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TEL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMAIL)
+                    </td>
+                    <td>
+                        <a data-fancybox="gallery" class="fancybox btn btn-outline-primary" data-type="iframe" style="float: left;" href="@Url.Action("UserModify", "Backend", new { Id = item.ID })"><i class="fa fa-pencil">&nbsp;</i>編輯</a>
+                        <button type="button" class=" btn btn-outline-danger  " id="delete" onclick="deleteClick(@item.ID)"><span class="fa fa-remove"></span> 刪除</button>
+                    </td>
+                    <td>
+                        <a class="btn btn-link collapsed" role="button" data-toggle="collapse" data-target="#collapse@(item.ID)" aria-expanded="false" aria-controls="collapse@(item.ID)"><i class="fa fa-angle-double-down i_collapse"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="padding: 0px !important;">
+                        <div id="collapse@(item.ID)" class="collapse ruleDiv" aria-labelledby="heading@(item.ID)" data-parent="#accordion">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>寵物名字</th>
+                                        <th>種類</th>
+                                        <th>生日</th>
+                                        <th>性別</th>
+                                        <th>維護</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item2 in List2.Where(o => o.OWNER_ID == item.ID))
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item2.PET_NAME)</td>
+                                            <td>@Html.DisplayFor(modelItem => item2.KIND)</td>
+                                            <td>@item2.BIRTHDAY.Value.ToShortDateString()</td>
+                                            @if (item2.SEX == "F")
+                                            {
+                                                <td>女孩</td>
+                                            }
+                                            else if (item2.SEX == "M")
+                                            {
+                                                <td>男孩</td>
+                                            }
+                                            <td>
+                                                <a data-fancybox="gallery" class="fancybox btn btn-outline-primary" data-type="iframe" href="@Url.Action("PetModify", "Backend", new { Id = item2.ID })"><i class="fa fa-pencil">&nbsp;</i>編輯</a>
+                                                <button type="button" class="btn btn-outline-danger" id="deletePet" onclick="deletePetClick(@item2.ID)"><span class="fa fa-remove"></span> 刪除</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" style="font-weight: bolder; " align='center' valign="middle">查無資料</td>
+            </tr>
+        }
+    </table>
+</div>
+
+@section scripts
+{
+    @*列表分頁*@
+    <script type="text/javascript">
+            $(function () {
+                $('.pagination>li>a[href]').each(function (i, item) {
+                    var page = $(item).attr('href').replace('@Url.Content("~/Backend/UserManagement?page=")','');
+                    $(item).attr('href', '#').click(function () { postPage(page); });
+
+                });
+            });
+            function postPage(page) {
+                var targetFormId = '#UserList';
+                if ($(targetFormId).length > 0) {
+                    $('<input>')
+                        .attr({ type: 'hidden', id: 'PageIndex', name: 'PageIndex', value: page })
+                        .appendTo($(targetFormId));
+                    $(targetFormId).submit();
+                }
+            };
+    </script>
+
+
+    <script type="text/javascript">
+             function deleteClick(id) {
+            swal({
+                title: '刪除?',
+                text: '確定要刪除該筆會員?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '確定',
+                cancelButtonText: '取消'
+            }).then(
+                function (result) {
+                    console.log(result);
+                    if (result === true) {
+                        $.ajax({
+                            url: '@Url.Action("UserDelete")',
+                            dataType: 'json',
+                            type: 'POST',
+                            async: false,
+                            data: { Id: id },
+                            success: function (data) {
+                            }
+                        });
+                        swal(
+                            '完成',
+                            '刪除成功！',
+                            'success'
+                        ).then(function () {
+                            location.href = location.href;
+                        })
+                    }
+                }
+            ).catch(swal.noop);
+        }
+
+        function deletePetClick(petid) {
+            swal({
+                title: '刪除?',
+                text: '確定要刪除該筆寵物?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '確定',
+                cancelButtonText: '取消'
+            }).then(
+                function (result) {
+                    console.log(result);
+                    if (result === true) {
+                        $.ajax({
+                            url: '@Url.Action("PetDelete")',
+                            dataType: 'json',
+                            type: 'POST',
+                            async: false,
+                            data: { ID: petid },
+                            success: function (data) {
+                            }
+                        });
+                        swal(
+                            '完成',
+                            '刪除成功！',
+                            'success'
+                        ).then(function () {
+                            location.href = location.href;
+                        })
+                    }
+                }
+            ).catch(swal.noop);
+        }
+    </script>
+}

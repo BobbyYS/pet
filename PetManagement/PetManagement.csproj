@@ -52,6 +52,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -129,8 +135,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BackendController.cs" />
+    <Compile Include="Controllers\countController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\kcalController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Controllers\QAController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -155,6 +166,7 @@
       <DependentUpon>PetForum.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BACKENDLIST.cs" />
     <Compile Include="ViewModels\MESSAGE.cs" />
     <Compile Include="ViewModels\PETINFO.cs" />
     <Compile Include="ViewModels\USERINFO.cs" />
@@ -165,10 +177,12 @@
     <Content Include="Content\Login.css" />
     <Content Include="Content\Message.css" />
     <Content Include="Content\OwnerStyle.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\PublicStyle.css" />
     <Content Include="Content\Stock.css" />
     <Content Include="Content\UserStyle.css" />
     <Content Include="Images\Header\icon\chat.png" />
+    <Content Include="Images\Header\icon\control.png" />
     <Content Include="Images\Header\icon\pet-house_color.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -321,6 +335,16 @@
     <Content Include="Views\UserInfo\Owner.cshtml" />
     <Content Include="Views\UserInfo\PetCreate.cshtml" />
     <Content Include="Views\UserInfo\PetModify.cshtml" />
+    <Content Include="Views\count\index.cshtml" />
+    <Content Include="Views\kcal\index.cshtml" />
+    <Content Include="Views\Map\Hospital.cshtml" />
+    <Content Include="Views\Map\Park.cshtml" />
+    <Content Include="Views\Map\Salon.cshtml" />
+    <Content Include="Views\Map\_Park.cshtml" />
+    <Content Include="Views\QA\index.cshtml" />
+    <Content Include="Views\Backend\UserManagement.cshtml" />
+    <Content Include="Views\Backend\UserModify.cshtml" />
+    <Content Include="Views\Backend\PetModify.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

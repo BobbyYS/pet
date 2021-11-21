@@ -129,7 +129,16 @@ namespace PetManagement.Controllers
         public ActionResult GetMenu()
         {
             string userName = Session["userName"] as string;
+            string userId = Session["userId"] as string;
             ViewBag.UserName = userName;
+            DataTable result = data.GetDataTable("SELECT * FROM USER_INFO WHERE ID = '" + userId + "' AND IS_USE = '1' AND IS_ADMIN = '1' ");
+
+            if (result.Rows.Count > 0)
+            {
+                DataRow dr = result.Rows[0];
+                ViewBag.Administrator = dr[11].ToString();
+            }
+
             return PartialView("_GetMenu");
         }
     }
